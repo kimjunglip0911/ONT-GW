@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+/* 순수 흑백이 아닌 zinc 이중 톤 */
+@theme {
+  --color-canvas: #f4f4f5;
+  --color-ink: #27272a;
+  --color-muted: #71717a;
+  --color-line: #d4d4d8;
+  --color-card: #fafafa;
+  --color-rail: #18181b;
+  --color-rail-fg: #d4d4d8;
+  --color-rail-on: #fafafa;
+  --color-chip: #27272a;
+}
+
+body {
+  min-height: 100dvh;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+}

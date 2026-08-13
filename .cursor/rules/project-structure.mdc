@@ -1,0 +1,71 @@
+---
+alwaysApply: true
+---
+> **위치·최신화**: 본문은 레포 디렉터리 트리 정본이다. **구조가 바뀌면 같은 작업에서 이 파일을 반드시 갱신**한다.
+
+```
+ONT-GW/
+  .cursor/
+    rules/
+      project-structure.mdc
+      rules.mdc
+  app/
+    _auth/
+      check.ts
+      cookie.ts
+      names.ts
+      role.ts
+    _shell/
+      auth.tsx
+      brand.tsx
+      cx.ts
+      draw.tsx
+      fields.tsx
+      frame.tsx
+      glyph.tsx
+      hover.tsx
+      links.tsx
+      login.tsx
+      menu.ts
+      rail.tsx
+      sider.tsx
+      title.ts
+      topbar.tsx
+    admin/
+      data.ts
+      page.tsx
+      panel.tsx
+    api/
+      login/
+        route.ts
+      logout/
+        route.ts
+    attend/
+      board.tsx
+      cards.tsx
+      data.ts
+      page.tsx
+    notice/
+      data.ts
+      list.tsx
+      page.tsx
+    globals.css
+    layout.tsx
+    page.tsx
+  .gitignore
+  AGENTS.md
+  CLAUDE.md
+  eslint.config.mjs
+  next.config.ts
+  package.json
+  package-lock.json
+  postcss.config.mjs
+  proxy.ts
+  README.md
+  tsconfig.json
+```
+
+- `node_modules/`, `.next/` 는 생성물이며 트리에 넣지 않는다.
+- `.env.local` 은 로컬 전용(Git 제외). 빈 템플릿이라 `public/` 은 아직 없다.
+
+*Last Updated: 2026-08-13*
