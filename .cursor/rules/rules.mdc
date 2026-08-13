@@ -7,7 +7,7 @@ alwaysApply: true
 
 - **런타임:** Node.js 24
 - **앱:** Next.js 16.3 (App Router, 풀스택 — 별도 백엔드 프레임워크 없음)
-- **언어:** TypeScript 7 (`tsc`) — ESLint 등 JS API 도구는 TypeScript 6 래퍼(`typescript` → `@typescript/typescript6`)를 병행
+- **언어:** TypeScript 7 (`tsc`) — ESLint JS API는 `@typescript/typescript6` + `ts6hook.cjs`
 - **UI:** Tailwind CSS 4
 - **린트:** ESLint (`eslint-config-next`)
 - **패키지 매니저:** npm

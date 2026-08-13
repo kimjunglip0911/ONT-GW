@@ -43,8 +43,8 @@ npm run dev
 
 ## 주의사항
 
-- TypeScript 7은 JS Compiler API가 없다. `tsc`는 7.0, ESLint·Next 도구는 TypeScript 6 래퍼를 쓴다. `typescript` 패키지를 7로만 두면 `npm run lint`가 실패한다.
-- `next.config.ts` 에서 `experimental.useTypeScriptCli` 를 `false` 로 두면 TypeScript 7 전용 패키지와 함께 `next build` 가 실패할 수 있다.
+- `typescript`는 7이다. `next build`가 `tsc`를 찾는다. ESLint는 JS Compiler API가 필요해서 `@typescript/typescript6`와 `ts6hook.cjs`로 6 API를 쓴다.
+- `next.config.ts`에서 `experimental.useTypeScriptCli`를 `false`로 두면 TypeScript 7과 함께 `next build`가 실패할 수 있다.
 - 패키지 매니저는 npm만 사용한다. pnpm/yarn은 쓰지 않는다.
 - DB는 Supabase다. 키는 `.env.local`에만 둔다. `SUPABASE_SECRET_KEY`는 브라우저·채팅·커밋에 넣지 않는다.
 - `ADMIN_PASS`도 `.env.local`에만 둔다. 이후 계정별 권한은 DB로 옮긴다.
