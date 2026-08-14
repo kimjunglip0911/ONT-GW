@@ -14,18 +14,22 @@ ONT-GW/
 ├── app/                             # App Router 루트
 │   ├── _auth/                       # DB 사용자 세션
 │   │   ├── check.ts                 # 비밀번호·역할 매핑
-│   │   ├── cookie.ts                # 역할 쿠키 설정·삭제
+│   │   ├── cookie.ts                # 역할·아이디 쿠키 설정·삭제
 │   │   ├── fold.ts                  # 아이디 대문자 정규화
 │   │   ├── fold.test.ts             # 아이디 정규화 테스트
 │   │   ├── gate.ts                  # 공개 경로·next 허용
 │   │   ├── gate.test.ts             # 경로 게이트 테스트
+│   │   ├── kick.ts                  # 세션 무효 시 로그인으로 보냄
+│   │   ├── live.ts                  # 쿠키와 DB 행이 맞는지 본다
 │   │   ├── names.ts                 # 쿠키 키·역할 값
 │   │   ├── role.ts                  # 관리자·로그인 여부
 │   │   ├── role.test.ts             # 역할 매핑 테스트
 │   │   ├── rule.ts                  # 새 비밀번호 검증
 │   │   ├── rule.test.ts             # 새 비밀번호 검증 테스트
 │   │   ├── seed.ts                  # 기본 비밀번호 상수
-│   │   └── seed.test.ts             # 기본 비밀번호 테스트
+│   │   ├── seed.test.ts             # 기본 비밀번호 테스트
+│   │   ├── sess.ts                  # 세션 유효 여부
+│   │   └── sess.test.ts             # 삭제·초기화 세션 테스트
 │   ├── _db/                         # Supabase 서버 접근
 │   │   ├── add.ts                   # public.users insert
 │   │   ├── asnote.ts                # DB 행 → Notice
@@ -143,7 +147,7 @@ ONT-GW/
 │   │   ├── list.tsx                 # 공지 목록 UI
 │   │   └── page.tsx                 # 공지 페이지
 │   ├── globals.css                  # Tailwind·테마 토큰
-│   ├── layout.tsx                   # 루트 레이아웃·셸 연결
+│   ├── layout.tsx                   # 루트 레이아웃·살아 있는 세션 확인
 │   └── page.tsx                     # /notice 로 리다이렉트
 ├── .gitignore                       # Git 제외 목록
 ├── AGENTS.md                        # Next.js 에이전트 안내
@@ -153,7 +157,7 @@ ONT-GW/
 ├── package.json                     # 스크립트·의존성
 ├── package-lock.json                # 잠긴 의존성 버전
 ├── postcss.config.mjs               # PostCSS(Tailwind)
-├── proxy.ts                         # 비로그인·직원 /admin 차단
+├── proxy.ts                         # 쿠키 유무·직원 /admin 차단
 ├── README.md                        # 목적·실행·환경 변수
 ├── scripts/
 │   └── run.cjs                      # 로컬 CA 있으면 Node에 연결

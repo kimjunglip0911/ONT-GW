@@ -22,6 +22,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false }, { status: 401 });
   }
   const data = loginOk(row.pass, tok);
-  if (!("need" in data)) await setRole(tok);
+  if (!("need" in data)) await setRole(tok, id);
   return NextResponse.json(data);
 }

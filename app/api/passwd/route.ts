@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     if (!(await chgPass(id, pass, SEED))) {
       return NextResponse.json({ ok: false }, { status: 400 });
     }
-    await setRole(tok);
+    await setRole(tok, id);
     return NextResponse.json({ ok: true, role: tok });
   } catch {
     return NextResponse.json({ ok: false }, { status: 503 });

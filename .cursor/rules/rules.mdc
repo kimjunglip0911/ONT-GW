@@ -12,7 +12,7 @@ alwaysApply: true
 - **린트:** ESLint (`eslint-config-next`)
 - **패키지 매니저:** npm
 - **DB:** Supabase 기반 (키는 `.env.local`, Git 금지)
-- **인증:** `public.users` 아이디·비밀번호, `gw_role` 쿠키. 공지는 `public.notices`. 급여 실데이터는 예정
+- **인증:** `public.users` 아이디·비밀번호, `gw_role`·`gw_uid` 쿠키. 공지는 `public.notices`. 급여 실데이터는 예정
 
 
 ## 1. 개발 시 준수 사항
