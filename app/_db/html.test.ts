@@ -34,12 +34,12 @@ test("unsafe color and background drop", () => {
 });
 
 test("palette font size stays", () => {
-  const out = cleanHtml('<p><span style="font-size: 18px">a</span></p>');
-  assert.match(out, /<span style="font-size:18px">a<\/span>/);
+  const out = cleanHtml('<p><span style="font-size: 18pt">a</span></p>');
+  assert.match(out, /<span style="font-size:18pt">a<\/span>/);
 });
 
 test("huge font size drops", () => {
-  const out = cleanHtml('<span style="font-size:99px">a</span>');
-  assert.equal(out.includes("99px"), false);
+  const out = cleanHtml('<span style="font-size:99pt">a</span>');
+  assert.equal(out.includes("99pt"), false);
   assert.equal(textOf(out), "a");
 });

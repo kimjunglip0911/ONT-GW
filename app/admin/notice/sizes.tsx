@@ -11,7 +11,7 @@ export function Sizes({ editor }: { editor: Editor }) {
       <span className="mx-1 h-4 w-px bg-line" />
       <select
         aria-label="글자 크기"
-        className="rounded border border-line bg-canvas px-1 py-0.5 text-xs"
+        className="min-w-12 rounded border border-line bg-canvas px-1 py-0.5 text-xs"
         onChange={(e) => {
           const v = e.target.value;
           const run = editor.chain().focus();
@@ -23,7 +23,7 @@ export function Sizes({ editor }: { editor: Editor }) {
         <option value="">크기</option>
         {SIZES.map((s) => (
           <option key={s} value={s}>
-            {s.replace("px", "")}
+            {s.replace("pt", "")}
           </option>
         ))}
       </select>

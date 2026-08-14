@@ -12,7 +12,8 @@ export function Form() {
 
   async function onSend(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
     const title = String(fd.get("title") ?? "");
     const kind = String(fd.get("kind") ?? "일반");
     const days = Number(fd.get("days") ?? 0);
@@ -22,7 +23,7 @@ export function Form() {
     });
     if (fail) { setErr(fail); return; }
     setErr("");
-    e.currentTarget.reset();
+    form.reset();
     setHtml("");
     setN((x) => x + 1);
   }
