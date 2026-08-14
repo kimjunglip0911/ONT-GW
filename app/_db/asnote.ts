@@ -1,4 +1,5 @@
 import { isKind, type Notice } from "../notice/data";
+import { cleanHtml } from "./html";
 
 function asText(v: unknown) {
   return typeof v === "string" ? v : "";
@@ -14,7 +15,7 @@ export function toNote(row: Record<string, unknown>): Notice | null {
   const id = asText(row.id);
   const title = asText(row.title);
   const kind = asText(row.kind);
-  const body = asText(row.body);
+  const body = cleanHtml(asText(row.body));
   const created = asTime(row.created_at);
   if (!id || !title || !body || !created || !isKind(kind)) return null;
   const pin = row.pin_until;
