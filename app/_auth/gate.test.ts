@@ -6,6 +6,7 @@ import { ROLE_OK, ROLE_STAFF } from "./names.ts";
 test("auth apis are open", () => {
   assert.equal(isApi("/api/login"), true);
   assert.equal(isApi("/api/logout"), true);
+  assert.equal(isApi("/api/passwd"), true);
   assert.equal(isApi("/notice"), false);
 });
 

@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { foldUid } from "../_auth/fold";
 import { homeOf, safeNext } from "../_auth/gate";
-import { Fields } from "./fields";
+import { Card } from "./card";
+import { Chg } from "./chg";
 
 export function Form() {
   const router = useRouter();
@@ -12,6 +12,7 @@ export function Form() {
   const [id, setId] = useState("");
   const [pass, setPass] = useState("");
   const [err, setErr] = useState("");
+  const [need, setNeed] = useState(false);
 
   async function onSend(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -20,28 +21,18 @@ export function Form() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id, pass }),
     });
-    if (!res.ok) {
-      setErr("계정을 확인하세요.");
-      return;
-    }
-    const data = (await res.json()) as { role?: string };
+    if (!res.ok) { setErr("계정을 확인하세요."); return; }
+    const data = (await res.json()) as { role?: string; need?: boolean };
+    if (data.need) { setNeed(true); return; }
     const tok = data.role ?? "";
     router.push(safeNext(next, tok) || homeOf(tok));
     router.refresh();
   }
 
   return (
-    <form
-      onSubmit={onSend}
-      className="w-full max-w-sm rounded-xl border border-line bg-card p-6 shadow-lg"
-    >
-      <h2 className="mb-4 text-lg font-semibold">로그인</h2>
-      <Fields id={id} pass={pass} err={err} setId={(v) => setId(foldUid(v))} setPass={setPass} />
-      <div className="mt-5 flex justify-end">
-        <button type="submit" className="rounded-md bg-ink px-3 py-2 text-sm text-card">
-          확인
-        </button>
-      </div>
-    </form>
+    <>
+      <Card err={err} id={id} onSend={onSend} pass={pass} setId={setId} setPass={setPass} />
+      {need ? <Chg id={id} next={next} /> : null}
+    </>
   );
 }

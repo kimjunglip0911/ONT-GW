@@ -1,8 +1,8 @@
 import { ROLE_OK, ROLE_STAFF } from "./names.ts";
 
-/** 로그인·로그아웃 API인지 본다 */
+/** 로그인·로그아웃·비밀번호 변경 API인지 본다 */
 export function isApi(path: string) {
-  return path === "/api/login" || path === "/api/logout";
+  return path === "/api/login" || path === "/api/logout" || path === "/api/passwd";
 }
 
 /** 로그인 화면인지 본다 */
