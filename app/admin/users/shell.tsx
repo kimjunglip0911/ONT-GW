@@ -19,6 +19,7 @@ export function Shell({ rows: init }: { rows: User[] }) {
         empty={x.empty}
         onDrop={x.onDrop}
         onEdit={x.onEdit}
+        onRst={x.onRst}
         rows={x.shown}
       />
     </section>

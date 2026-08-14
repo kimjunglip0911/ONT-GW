@@ -12,7 +12,7 @@ export function Erow({ row, onSave, onQuit }: Props) {
   const [err, setErr] = useState("");
   const [edit, setEdit] = useState({
     name: row.name, role: row.role, birth: row.birth, hired: row.hired,
-    pay: String(row.pay), pass: "",
+    pay: String(row.pay),
     etc1: String(row.etc1), etc2: String(row.etc2),
     etc3: String(row.etc3), etc4: String(row.etc4),
   });
@@ -39,7 +39,7 @@ export function Erow({ row, onSave, onQuit }: Props) {
       <Ecell onVal={(v) => set("etc3", v)} type="number" value={edit.etc3} />
       <Ecell onVal={(v) => set("etc4", v)} type="number" value={edit.etc4} />
       <Esel onVal={(v) => set("role", v)} value={edit.role} />
-      <Ecell hint="변경 시" onVal={(v) => set("pass", v)} type="password" value={edit.pass} />
+      <td className="px-4 py-2" />
       <td className="w-px whitespace-nowrap px-2 py-2">
         <button className={btn} onClick={() => void onOk()} type="button">저장</button>
         {err ? <p className="mt-1 text-xs text-muted">{err}</p> : null}

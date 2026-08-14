@@ -1,7 +1,7 @@
-import { isRole, type Role } from "./data";
-import { asDay, asEtc, asPay, asStr } from "./map";
+import { isRole, type Role } from "./data.ts";
+import { asDay, asEtc, asPay, asStr } from "./map.ts";
 
-/** 행 수정. pass가 빈 값이면 비밀번호는 유지 */
+/** 행 수정. 비밀번호는 초기화로만 바꾼다 */
 export type Patch = {
   uid: string;
   name: string;
@@ -13,7 +13,6 @@ export type Patch = {
   etc3: number;
   etc4: number;
   role: Role;
-  pass: string;
 };
 
 export function toPatch(
@@ -29,7 +28,6 @@ export function toPatch(
   if (!Number.isFinite(pay)) return null;
   return {
     uid, name, birth, hired, pay, role,
-    pass: asStr(row.pass),
     etc1: asEtc(row.etc1), etc2: asEtc(row.etc2),
     etc3: asEtc(row.etc3), etc4: asEtc(row.etc4),
   };

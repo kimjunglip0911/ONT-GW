@@ -5,7 +5,7 @@ import { toUser } from "./cast";
 import { COLS } from "./cols";
 import { db } from "./sb";
 
-/** uid로 수정. pass가 없으면 비밀번호는 그대로 둔다 */
+/** uid로 수정. 비밀번호는 건드리지 않는다 */
 export async function updUser(row: Patch): Promise<User> {
   const body: Record<string, unknown> = {
     name: row.name,
@@ -18,7 +18,6 @@ export async function updUser(row: Patch): Promise<User> {
     etc4: row.etc4,
     role: row.role,
   };
-  if (row.pass) body.pass = row.pass;
   const { data, error } = await db()
     .from("users")
     .update(body)

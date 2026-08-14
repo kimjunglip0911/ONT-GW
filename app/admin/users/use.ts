@@ -6,6 +6,7 @@ import type { Draft, User } from "./data";
 import { dropUser } from "./drop";
 import { byQuery } from "./filt";
 import type { Patch } from "./patch";
+import { rstPass } from "./rst";
 import { saveMany, saveOne } from "./save";
 
 export function useRows(init: User[]) {
@@ -40,7 +41,10 @@ export function useRows(init: User[]) {
     return "";
   }
 
+  async function onRst(uid: string) {
+    return (await rstPass(uid)).err;
+  }
   const shown = byQuery(rows, q);
   const empty = q.trim() ? "조회 결과가 없습니다." : "등록된 사용자가 없습니다.";
-  return { rows, q, setQ, shown, empty, onAdd, onMany, onEdit, onDrop };
+  return { rows, q, setQ, shown, empty, onAdd, onMany, onEdit, onDrop, onRst };
 }

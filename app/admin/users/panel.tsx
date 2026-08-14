@@ -12,9 +12,10 @@ type Props = {
   empty: string;
   onEdit: (row: Patch) => Promise<string>;
   onDrop: (uid: string) => Promise<string>;
+  onRst: (uid: string) => Promise<string>;
 };
 
-export function Panel({ rows, empty, onEdit, onDrop }: Props) {
+export function Panel({ rows, empty, onEdit, onDrop, onRst }: Props) {
   return (
     <div className="overflow-x-auto rounded-xl border border-line bg-card">
       <table className="w-full min-w-xl text-left text-sm">
@@ -37,7 +38,7 @@ export function Panel({ rows, empty, onEdit, onDrop }: Props) {
             </tr>
           ) : (
             rows.map((row) => (
-              <Trow key={row.uid} onDrop={onDrop} onEdit={onEdit} row={row} />
+              <Trow key={row.uid} onDrop={onDrop} onEdit={onEdit} onRst={onRst} row={row} />
             ))
           )}
         </tbody>
