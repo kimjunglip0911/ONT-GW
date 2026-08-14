@@ -33,6 +33,7 @@ ONT-GW/
 │   ├── _db/                         # Supabase 서버 접근
 │   │   ├── add.ts                   # public.users insert
 │   │   ├── asnote.ts                # DB 행 → Notice
+│   │   ├── band.ts                  # public.bands 조회
 │   │   ├── cast.ts                  # DB 행 → 목록 User
 │   │   ├── cols.ts                  # 목록 select 컬럼
 │   │   ├── del.ts                   # public.users 삭제
@@ -56,14 +57,16 @@ ONT-GW/
 │   │   ├── rank.ts                  # 고정·최신순 정렬
 │   │   ├── rank.test.ts             # 고정 정렬 테스트
 │   │   ├── rate.ts                  # 세금 요율 검증·씨드 이름
-│   │   ├── rows.ts                  # Tax·Pack·Perm 타입
+│   │   ├── rows.ts                  # Tax·Band·Pack·Perm 타입
 │   │   ├── sb.ts                    # secret 키 클라이언트
 │   │   ├── sizes.ts                 # 공지 본문 허용 글자 크기
 │   │   ├── tax.ts                   # public.taxes 조회
 │   │   ├── tax.test.ts              # 요율 범위·씨드 이름
 │   │   ├── taxed.ts                 # public.taxes 추가·수정·삭제
 │   │   ├── upd.ts                   # public.users 수정
-│   │   └── wage.ts                  # 기본급÷시간 시급
+│   │   ├── wage.ts                  # 기본급÷시간 시급
+│   │   ├── won.ts                   # 과세표준 금액 한글 표기
+│   │   └── won.test.ts              # 금액·구간 표기 테스트
 │   ├── _shell/                      # 레이아웃 셸
 │   │   ├── auth.tsx                 # 로그인·로그아웃 버튼
 │   │   ├── brand.tsx                # 레일 로고·앱 이름
@@ -97,6 +100,7 @@ ONT-GW/
 │   │   │   ├── sizes.tsx            # 본문 글자 크기
 │   │   │   └── tools.tsx            # 본문 서식 도구
 │   │   ├── pay/                     # 환경 설정 (DB)
+│   │   │   ├── bands.tsx            # 근로소득세 구간 설명
 │   │   │   ├── checks.tsx           # 권한 페이지·기능 체크
 │   │   │   ├── labs.ts              # 페이지·기능 한글 라벨
 │   │   │   ├── packact.test.ts      # 패키지 저장 전 관리자 가드
@@ -108,6 +112,7 @@ ONT-GW/
 │   │   │   ├── page.tsx             # 환경 설정 페이지
 │   │   │   ├── pane.test.ts         # 아코디언 제목이 버튼
 │   │   │   ├── pane.tsx             # 영역 아코디언
+│   │   │   ├── pct.tsx              # 요율 칸 안쪽 %
 │   │   │   ├── permact.test.ts      # 권한 저장 전 관리자 가드
 │   │   │   ├── permact.ts           # 권한 저장 액션
 │   │   │   ├── permadd.tsx          # 역할 추가 행

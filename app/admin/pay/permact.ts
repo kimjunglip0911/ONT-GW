@@ -20,14 +20,14 @@ async function run(work: () => Promise<Perm[]>) {
   }
 }
 
-export function onAddPerm(name: string) {
+export async function onAddPerm(name: string) {
   return run(() => addPerm(name));
 }
 
-export function onSetPerm(row: Perm) {
+export async function onSetPerm(row: Perm) {
   return run(() => setPerm(row));
 }
 
-export function onDelPerm(id: string) {
+export async function onDelPerm(id: string) {
   return run(() => delPerm(id));
 }

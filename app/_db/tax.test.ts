@@ -12,8 +12,8 @@ test("rate outside 0-100 fails", () => {
   assert.equal(okRate(101), false);
 });
 
-test("seed names are five tax items", () => {
+test("seed names are six tax items", () => {
   assert.deepEqual(TAXES, [
-    "국민연금", "건강보험", "장기요양", "고용보험", "소득세",
+    "근로소득세", "지방소득세", "국민연금", "건강보험", "장기요양보험", "고용보험",
   ]);
 });

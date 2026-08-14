@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { tiny } from "../box";
 import { btn } from "./labs";
+import { Pct } from "./pct";
 
 export function TaxAdd({ onAdd }: { onAdd: (name: string, rate: number) => void }) {
   const [name, setName] = useState("");
@@ -15,15 +16,7 @@ export function TaxAdd({ onAdd }: { onAdd: (name: string, rate: number) => void 
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <input
-        className={tiny}
-        type="number"
-        min={0}
-        max={100}
-        step="0.001"
-        value={rate}
-        onChange={(e) => setRate(e.target.value)}
-      />
+      <Pct val={rate} onVal={setRate} />
       <button
         className={btn}
         type="button"

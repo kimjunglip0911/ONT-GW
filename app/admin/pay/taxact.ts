@@ -20,14 +20,14 @@ async function run(work: () => Promise<Tax[]>) {
   }
 }
 
-export function onAddTax(name: string, rate: number) {
+export async function onAddTax(name: string, rate: number) {
   return run(() => addTax(name, rate));
 }
 
-export function onSetTax(row: Tax) {
+export async function onSetTax(row: Tax) {
   return run(() => setTax(row));
 }
 
-export function onDelTax(id: string) {
+export async function onDelTax(id: string) {
   return run(() => delTax(id));
 }

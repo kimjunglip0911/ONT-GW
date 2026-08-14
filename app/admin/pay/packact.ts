@@ -26,18 +26,18 @@ async function run(work: () => Promise<Pack[]>) {
   }
 }
 
-export function onAddPack(row: Omit<Pack, "id" | "is_def">) {
+export async function onAddPack(row: Omit<Pack, "id" | "is_def">) {
   return run(() => addPack(row));
 }
 
-export function onSetPack(row: Pack) {
+export async function onSetPack(row: Pack) {
   return run(() => setPack(row));
 }
 
-export function onDelPack(id: string) {
+export async function onDelPack(id: string) {
   return run(() => delPack(id));
 }
 
-export function onDefPack(id: string) {
+export async function onDefPack(id: string) {
   return run(() => markDef(id));
 }
