@@ -45,7 +45,7 @@ ONT-GW/
 │   │   ├── pay/                     # 급여 세팅 목업
 │   │   │   ├── form.tsx             # 시급·수당 비율 폼
 │   │   │   └── page.tsx             # 급여 세팅 페이지
-│   │   ├── users/                   # 사용자 등록 (세션 목업)
+│   │   ├── users/                   # 사용자 등록 & 조회 (세션 목업)
 │   │   │   ├── acts.ts              # 단건·다건 목록 추가
 │   │   │   ├── data.ts              # 사용자 타입·시드
 │   │   │   ├── field.tsx            # 등록 폼 입력 칸
@@ -55,7 +55,7 @@ ONT-GW/
 │   │   │   ├── inputs.tsx           # 등록 폼 필드 묶음
 │   │   │   ├── load.ts              # xlsx 시트 읽기
 │   │   │   ├── map.ts               # 셀 값을 Draft로 변환
-│   │   │   ├── page.tsx             # 사용자 등록 페이지
+│   │   │   ├── page.tsx             # 사용자 등록 & 조회 페이지
 │   │   │   ├── panel.tsx            # 사용자 목록 테이블
 │   │   │   ├── parse.ts             # 파일·시트 검증·파싱
 │   │   │   ├── read.ts              # 폼·셀에서 Draft 읽기
