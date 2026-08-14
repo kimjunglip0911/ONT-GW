@@ -18,23 +18,41 @@ ONT-GW/
     _shell/
       auth.tsx
       brand.tsx
+      chip.ts
       cx.ts
       draw.tsx
       fields.tsx
       frame.tsx
       glyph.tsx
       hover.tsx
+      kids.tsx
       links.tsx
       login.tsx
       menu.ts
+      nest.tsx
       rail.tsx
       sider.tsx
       title.ts
       topbar.tsx
     admin/
-      data.ts
+      attend/
+        data.ts
+        page.tsx
+        table.tsx
+      notice/
+        form.tsx
+        page.tsx
+      pay/
+        form.tsx
+        page.tsx
+      users/
+        data.ts
+        form.tsx
+        page.tsx
+        panel.tsx
+      box.ts
+      hub.tsx
       page.tsx
-      panel.tsx
     api/
       login/
         route.ts
@@ -69,4 +87,4 @@ ONT-GW/
 - `node_modules/`, `.next/` 는 생성물이며 트리에 넣지 않는다.
 - `.env.local` 은 로컬 전용(Git 제외). 빈 템플릿이라 `public/` 은 아직 없다.
 
-*Last Updated: 2026-08-13*
+*Last Updated: 2026-08-14*

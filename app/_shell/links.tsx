@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cx } from "./cx";
+import { navCls } from "./chip";
 import { Glyph } from "./glyph";
-import { navList } from "./menu";
+import { navList, pathOn } from "./menu";
+import { Nest } from "./nest";
 
 type Props = {
   admin: boolean;
@@ -16,25 +17,23 @@ export function Links({ admin, mode, onPick }: Props) {
   const path = usePathname();
   return (
     <ul className="flex flex-col gap-1 px-2">
-      {navList(admin).map((item) => {
-        const on = path.startsWith(item.href);
-        return (
-          <li key={item.href}>
+      {navList(admin).map((item) => (
+        <li key={item.href}>
+          {item.kids ? (
+            <Nest item={item} path={path} mode={mode} onPick={onPick} />
+          ) : (
             <Link
               href={item.href}
               onClick={onPick}
               title={item.label}
-              className={cx(
-                "flex items-center gap-3 rounded-lg px-2.5 py-2 text-sm",
-                on ? "bg-chip text-rail-on" : "text-rail-fg hover:bg-chip",
-              )}
+              className={navCls(pathOn(path, item.href))}
             >
               <Glyph name={item.icon} />
               {mode === "text" ? <span>{item.label}</span> : null}
             </Link>
-          </li>
-        );
-      })}
+          )}
+        </li>
+      ))}
     </ul>
   );
 }
