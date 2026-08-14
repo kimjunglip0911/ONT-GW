@@ -18,3 +18,19 @@ body {
   background: var(--color-canvas);
   color: var(--color-ink);
 }
+
+/* 모든 버튼: 손가락 커서, 누를 때 살짝 줄어듦 */
+@layer base {
+  button {
+    cursor: pointer;
+    transition: transform 0.12s ease;
+  }
+
+  button:active:not(:disabled) {
+    transform: scale(0.96);
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+}
