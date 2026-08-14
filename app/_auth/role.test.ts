@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { asTok, hasCred, isOk, isOn, passOk } from "./check.ts";
+import { asTok, hasCred, isOk, isOn, loginOk, passOk } from "./check.ts";
 import { foldUid } from "./fold.ts";
 import { ROLE_OK, ROLE_STAFF } from "./names.ts";
 
@@ -36,4 +36,12 @@ test("staff cookie is authed not admin", () => {
 
 test("folded ont matches stored uid", () => {
   assert.equal(foldUid("ont000001"), "ONT000001");
+});
+
+test("seed login asks for change not role", () => {
+  assert.deepEqual(loginOk("1234", "admin"), { ok: true, need: true });
+});
+
+test("custom login returns role", () => {
+  assert.deepEqual(loginOk("secret", "staff"), { ok: true, role: "staff" });
 });

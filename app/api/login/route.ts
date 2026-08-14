@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { asTok, hasCred, passOk } from "../../_auth/check";
+import { asTok, hasCred, loginOk, passOk } from "../../_auth/check";
 import { setRole } from "../../_auth/cookie";
 import { foldUid } from "../../_auth/fold";
 import { findUser } from "../../_db/find";
@@ -18,9 +18,10 @@ export async function POST(req: Request) {
   }
   const row = await findUser(id);
   const tok = row && passOk(row.pass, pass) ? asTok(row.role) : "";
-  if (!tok) {
+  if (!row || !tok) {
     return NextResponse.json({ ok: false }, { status: 401 });
   }
-  await setRole(tok);
-  return NextResponse.json({ ok: true, role: tok });
+  const data = loginOk(row.pass, tok);
+  if (!("need" in data)) await setRole(tok);
+  return NextResponse.json(data);
 }
