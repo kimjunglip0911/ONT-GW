@@ -1,27 +1,44 @@
-import { box } from "../box";
+"use client";
 
-export function Form() {
+import { useState, type FormEvent } from "react";
+import { box } from "../box";
+import { isRole, type Draft } from "./data";
+import { Inputs } from "./inputs";
+
+type Props = { uid: string; onAdd: (row: Draft) => void };
+
+export function Form({ uid, onAdd }: Props) {
+  const [err, setErr] = useState("");
+
+  function onSend(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const pass = String(fd.get("pass") ?? "").trim();
+    const name = String(fd.get("name") ?? "").trim();
+    const birth = String(fd.get("birth") ?? "");
+    const hired = String(fd.get("hired") ?? "");
+    const role = String(fd.get("role") ?? "");
+    const pay = Number(fd.get("pay"));
+    if (!pass || !name || !birth || !hired || !isRole(role) || !Number.isFinite(pay)) {
+      setErr("필수 항목을 입력하세요.");
+      return;
+    }
+    onAdd({ pass, name, birth, pay, role, hired });
+    setErr("");
+    e.currentTarget.reset();
+  }
+
   return (
-    <form className="mb-6 max-w-md rounded-xl border border-line bg-card p-4">
+    <form onSubmit={onSend} className="mb-6 max-w-md rounded-xl border border-line bg-card p-4">
       <label className="block text-sm">
-        이름
-        <input name="name" className={box} />
+        ID
+        <input name="uid" value={uid} readOnly className={box} />
       </label>
-      <label className="mt-3 block text-sm">
-        팀
-        <input name="team" className={box} />
-      </label>
-      <label className="mt-3 block text-sm">
-        권한
-        <input name="role" className={box} />
-      </label>
-      <button
-        type="button"
-        className="mt-4 rounded-md bg-ink px-3 py-2 text-sm text-card"
-      >
+      <Inputs />
+      <button type="submit" className="mt-4 rounded-md bg-ink px-3 py-2 text-sm text-card">
         등록
       </button>
-      <p className="mt-2 text-xs text-muted">저장은 다음 작업입니다.</p>
+      {err ? <p className="mt-2 text-xs text-muted">{err}</p> : null}
     </form>
   );
 }

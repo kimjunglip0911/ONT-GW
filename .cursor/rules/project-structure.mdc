@@ -46,10 +46,19 @@ ONT-GW/
         form.tsx
         page.tsx
       users/
+        acts.ts
         data.ts
+        find.tsx
         form.tsx
+        ids.ts
+        inputs.tsx
+        map.ts
         page.tsx
         panel.tsx
+        parse.ts
+        shell.tsx
+        tabs.tsx
+        upload.tsx
       box.ts
       hub.tsx
       page.tsx
