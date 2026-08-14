@@ -1,13 +1,14 @@
 import { Field } from "./field";
+import type { Fill } from "./fill";
 
 /** 기본급·시급·식대·유류비 */
-export function Pays() {
+export function Pays({ fill }: { fill: Fill }) {
   return (
     <>
-      <Field name="pay" text="기본급" type="number" />
-      <Field name="wage" need={false} text="기본 시급" type="number" />
-      <Field name="meal" need={false} text="식대" type="number" />
-      <Field name="fuel" need={false} text="유류비" type="number" />
+      <Field name="pay" text="기본급" type="number" val={fill.pay} />
+      <Field name="wage" need={false} text="기본 시급" type="number" val={fill.wage} />
+      <Field name="meal" need={false} text="식대" type="number" val={fill.meal} />
+      <Field name="fuel" need={false} text="유류비" type="number" val={fill.fuel} />
     </>
   );
 }
@@ -16,8 +17,8 @@ export function Pays() {
 export function Etcs() {
   return (
     <>
-      <Field cls="col-start-1" name="etc1" need={false} text="기타급여1" type="number" />
-      <Field name="etc2" need={false} text="기타급여2" type="number" />
+      <Field cls="col-start-1" name="etc1" need={false} text="기타급여1" type="number" val="0" />
+      <Field name="etc2" need={false} text="기타급여2" type="number" val="0" />
     </>
   );
 }

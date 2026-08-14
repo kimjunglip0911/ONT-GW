@@ -2,13 +2,18 @@
 
 import { useState, type FormEvent } from "react";
 import type { Draft } from "./data";
+import type { Fill } from "./fill";
 import { Inputs } from "./inputs";
 import { Etcs, Pays } from "./pays";
 import { fromForm } from "./read";
 
-type Props = { uid: string; onAdd: (row: Draft) => Promise<string> };
+type Props = {
+  fill: Fill;
+  uid: string;
+  onAdd: (row: Draft) => Promise<string>;
+};
 
-export function Form({ uid, onAdd }: Props) {
+export function Form({ fill, uid, onAdd }: Props) {
   const [err, setErr] = useState("");
 
   async function onSend(e: FormEvent<HTMLFormElement>) {
@@ -32,7 +37,7 @@ export function Form({ uid, onAdd }: Props) {
     >
       <div className="grid grid-cols-5 gap-x-3 gap-y-3">
         <Inputs uid={uid} />
-        <Pays />
+        <Pays fill={fill} />
         <Etcs />
       </div>
       <div className="mt-3 flex justify-end">
