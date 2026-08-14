@@ -8,7 +8,7 @@ import type { Patch } from "./patch";
 import { Rbtn } from "./rbtn";
 
 function won(n: number) {
-  return n.toLocaleString();
+  return (n ?? 0).toLocaleString();
 }
 
 type Props = {
@@ -29,17 +29,19 @@ export function Trow({ row, onEdit, onDrop, onRst }: Props) {
       <td className="px-4 py-2">{row.name}</td>
       <td className="px-4 py-2">{row.birth}</td>
       <td className="px-4 py-2">{row.hired}</td>
+      <td className="px-4 py-2">{row.role}</td>
       <td className="px-4 py-2">{won(row.pay)}</td>
+      <td className="px-4 py-2">{won(row.wage)}</td>
+      <td className="px-4 py-2">{won(row.meal)}</td>
+      <td className="px-4 py-2">{won(row.fuel)}</td>
       <td className="px-4 py-2">{won(row.etc1)}</td>
       <td className="px-4 py-2">{won(row.etc2)}</td>
-      <td className="px-4 py-2">{won(row.etc3)}</td>
-      <td className="px-4 py-2">{won(row.etc4)}</td>
-      <td className="px-4 py-2">{row.role}</td>
-      <td className="px-4 py-2">
-        <Rbtn onRst={() => onRst(row.uid)} />
-      </td>
       <td className="w-px whitespace-nowrap px-2 py-2">
-        <Acts onDrop={() => onDrop(row.uid)} onEdit={() => setOn(true)} />
+        <div className="flex w-max items-center gap-2">
+          <Rbtn onRst={() => onRst(row.uid)} />
+          <span className="h-4 w-px bg-line" />
+          <Acts onDrop={() => onDrop(row.uid)} onEdit={() => setOn(true)} />
+        </div>
       </td>
     </tr>
   );

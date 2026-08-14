@@ -3,8 +3,8 @@ import type { Patch } from "./patch";
 import { Trow } from "./trow";
 
 const COLS = [
-  "ID", "이름", "생년월일", "입사일", "기본급",
-  "기타1", "기타2", "기타3", "기타4", "권한", "PW",
+  "ID", "이름", "생년월일", "입사일", "권한", "기본급",
+  "시급", "식대", "유류비", "기타급여1", "기타급여2", "PW",
 ] as const;
 
 type Props = {
@@ -22,17 +22,16 @@ export function Panel({ rows, empty, onEdit, onDrop, onRst }: Props) {
         <thead className="border-b border-line text-muted">
           <tr>
             {COLS.map((c) => (
-              <th className="px-4 py-2 font-medium" key={c}>
+              <th className={c === "PW" ? "w-px whitespace-nowrap px-2 py-2 font-medium" : "px-4 py-2 font-medium"} key={c}>
                 {c}
               </th>
             ))}
-            <th className="w-px px-2 py-2" />
           </tr>
         </thead>
         <tbody>
           {rows.length === 0 ? (
             <tr>
-              <td className="px-4 py-3 text-muted" colSpan={COLS.length + 1}>
+              <td className="px-4 py-3 text-muted" colSpan={COLS.length}>
                 {empty}
               </td>
             </tr>

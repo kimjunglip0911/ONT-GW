@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 export default async function Page() {
   let rows: User[] = [];
-  let note = "목록은 DB에 저장됩니다. 새로고침해도 유지됩니다.";
+  let note = "";
   try {
     rows = await listUsers();
   } catch {
@@ -14,7 +14,7 @@ export default async function Page() {
   }
   return (
     <section>
-      <p className="mb-6 text-sm text-muted">{note}</p>
+      {note ? <p className="mb-6 text-sm text-muted">{note}</p> : null}
       <Shell rows={rows} />
     </section>
   );

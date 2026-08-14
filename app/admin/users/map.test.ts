@@ -15,6 +15,7 @@ test("draft needs name dates pay role not pass", () => {
   assert.ok(ok);
   assert.equal(ok.name, "김");
   assert.equal("pass" in ok, false);
+  assert.equal(ok.wage, 0);
 });
 
 test("draft without name is null", () => {

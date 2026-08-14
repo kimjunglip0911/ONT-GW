@@ -98,7 +98,8 @@ ONT-GW/
 │   │   │   ├── form.tsx             # 단건 등록 폼
 │   │   │   ├── head.ts              # 엑셀 필수·양식 헤더
 │   │   │   ├── ids.ts               # ONT 자동 ID 생성
-│   │   │   ├── inputs.tsx           # 등록 폼 필드 묶음
+│   │   │   ├── inputs.tsx           # 등록 폼 신원 필드
+│   │   │   ├── pays.tsx             # 등록 폼 급여 필드
 │   │   │   ├── load.ts              # xlsx 시트 읽기
 │   │   │   ├── map.ts               # 셀 값을 Draft로 변환
 │   │   │   ├── map.test.ts          # Draft에 비밀번호가 필요 없음
@@ -122,6 +123,8 @@ ONT-GW/
 │   │   ├── hub.tsx                  # 하위 화면 바로가기 카드
 │   │   └── page.tsx                 # 관리자 허브 페이지
 │   ├── api/                         # Route Handlers
+│   │   ├── kick/
+│   │   │   └── route.ts             # 무효 세션 GET, 쿠키 삭제 후 로그인
 │   │   ├── login/
 │   │   │   └── route.ts             # 로그인 POST, 쿠키 또는 변경 필요
 │   │   ├── logout/

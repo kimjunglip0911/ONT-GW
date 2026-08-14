@@ -5,11 +5,12 @@ type Props = {
   text: string;
   type?: string;
   need?: boolean;
+  cls?: string;
 };
 
-export function Field({ name, text, type, need = true }: Props) {
+export function Field({ name, text, type, need = true, cls }: Props) {
   return (
-    <label className={row}>
+    <label className={cls ? `${row} ${cls}` : row}>
       <span className={lab}>{text}</span>
       <input
         className={cell}

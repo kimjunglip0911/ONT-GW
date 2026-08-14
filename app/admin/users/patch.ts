@@ -8,10 +8,11 @@ export type Patch = {
   birth: string;
   hired: string;
   pay: number;
+  wage: number;
+  meal: number;
+  fuel: number;
   etc1: number;
   etc2: number;
-  etc3: number;
-  etc4: number;
   role: Role;
 };
 
@@ -28,7 +29,8 @@ export function toPatch(
   if (!Number.isFinite(pay)) return null;
   return {
     uid, name, birth, hired, pay, role,
+    wage: asEtc(row.wage),
+    meal: asEtc(row.meal), fuel: asEtc(row.fuel),
     etc1: asEtc(row.etc1), etc2: asEtc(row.etc2),
-    etc3: asEtc(row.etc3), etc4: asEtc(row.etc4),
   };
 }

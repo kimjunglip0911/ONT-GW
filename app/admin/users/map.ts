@@ -39,7 +39,8 @@ export function toDraft(row: Record<string, unknown>): Draft | null {
   if (!Number.isFinite(pay)) return null;
   return {
     name, birth, hired, pay, role,
+    wage: asEtc(row.wage),
+    meal: asEtc(row.meal), fuel: asEtc(row.fuel),
     etc1: asEtc(row.etc1), etc2: asEtc(row.etc2),
-    etc3: asEtc(row.etc3), etc4: asEtc(row.etc4),
   };
 }

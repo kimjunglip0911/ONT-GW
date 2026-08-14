@@ -12,10 +12,11 @@ export async function updUser(row: Patch): Promise<User> {
     birth: row.birth,
     hired: row.hired,
     pay: row.pay,
+    wage: row.wage,
+    meal: row.meal,
+    fuel: row.fuel,
     etc1: row.etc1,
     etc2: row.etc2,
-    etc3: row.etc3,
-    etc4: row.etc4,
     role: row.role,
   };
   const { data, error } = await db()

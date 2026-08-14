@@ -7,10 +7,11 @@ export type User = {
   birth: string;
   hired: string;
   pay: number;
+  wage: number;
+  meal: number;
+  fuel: number;
   etc1: number;
   etc2: number;
-  etc3: number;
-  etc4: number;
   role: Role;
 };
 
@@ -19,10 +20,11 @@ export type Draft = {
   birth: string;
   hired: string;
   pay: number;
+  wage: number;
+  meal: number;
+  fuel: number;
   etc1: number;
   etc2: number;
-  etc3: number;
-  etc4: number;
   role: Role;
 };
 

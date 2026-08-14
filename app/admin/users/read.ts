@@ -8,10 +8,11 @@ export function fromForm(fd: FormData): Draft | null {
     hired: fd.get("hired"),
     role: fd.get("role"),
     pay: fd.get("pay"),
+    wage: fd.get("wage"),
+    meal: fd.get("meal"),
+    fuel: fd.get("fuel"),
     etc1: fd.get("etc1"),
     etc2: fd.get("etc2"),
-    etc3: fd.get("etc3"),
-    etc4: fd.get("etc4"),
   });
 }
 
@@ -24,11 +25,12 @@ export function fromCells(row: unknown[], head: string[]): Draft | null {
     name: take("이름"),
     birth: take("생년월일"),
     pay: take("기본급"),
+    wage: take("기본 시급"),
     role: take("권한"),
     hired: take("입사일"),
-    etc1: take("기타급여1"),
-    etc2: take("기타급여2"),
-    etc3: take("기타급여3"),
-    etc4: take("기타급여4"),
+    meal: take("식대"),
+    fuel: take("유류비"),
+    etc1: take("기타급여1") ?? take("기타급여3"),
+    etc2: take("기타급여2") ?? take("기타급여4"),
   });
 }

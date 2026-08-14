@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { cell, lab, row } from "../box";
 import type { Draft } from "./data";
 import { Inputs } from "./inputs";
+import { Etcs, Pays } from "./pays";
 import { fromForm } from "./read";
 
 type Props = { uid: string; onAdd: (row: Draft) => Promise<string> };
@@ -28,20 +28,19 @@ export function Form({ uid, onAdd }: Props) {
   return (
     <form
       onSubmit={(e) => void onSend(e)}
-      className="mb-6 grid grid-cols-5 gap-3 rounded-xl border border-line bg-card p-4"
+      className="mb-6 rounded-xl border border-line bg-card p-4"
     >
-      <label className={row}>
-        <span className={lab}>ID</span>
-        <input name="uid" value={uid} readOnly className={cell} />
-      </label>
-      <Inputs />
-      <button
-        type="submit"
-        className="col-start-5 justify-self-end rounded-md bg-ink px-3 py-2 text-sm text-card"
-      >
-        등록
-      </button>
-      {err ? <p className="col-span-5 text-right text-xs text-muted">{err}</p> : null}
+      <div className="grid grid-cols-5 gap-x-3 gap-y-3">
+        <Inputs uid={uid} />
+        <Pays />
+        <Etcs />
+      </div>
+      <div className="mt-3 flex justify-end">
+        <button type="submit" className="rounded-md bg-ink px-3 py-2 text-sm text-card">
+          등록
+        </button>
+      </div>
+      {err ? <p className="mt-2 text-right text-xs text-muted">{err}</p> : null}
     </form>
   );
 }
