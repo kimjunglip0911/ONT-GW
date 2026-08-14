@@ -16,6 +16,7 @@ export function Npw({ pass, pass2, err, setPass, setPass2 }: Props) {
         새 비밀번호
         <input
           autoComplete="new-password"
+          autoFocus
           className={box}
           name="pass"
           onChange={(e) => setPass(e.target.value)}

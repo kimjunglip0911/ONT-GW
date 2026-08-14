@@ -29,10 +29,9 @@ export function Form() {
     router.refresh();
   }
 
-  return (
-    <>
-      <Card err={err} id={id} onSend={onSend} pass={pass} setId={setId} setPass={setPass} />
-      {need ? <Chg id={id} next={next} /> : null}
-    </>
+  return need ? (
+    <Chg id={id} next={next} />
+  ) : (
+    <Card err={err} id={id} onSend={onSend} pass={pass} setId={setId} setPass={setPass} />
   );
 }
