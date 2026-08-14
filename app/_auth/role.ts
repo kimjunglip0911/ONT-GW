@@ -1,8 +1,15 @@
 import { cookies } from "next/headers";
-import { ROLE_KEY, ROLE_OK } from "./names";
+import { isOk, isOn } from "./check";
+import { ROLE_KEY } from "./names";
 
-/** 요청 쿠키가 임시 관리자인지 본다 */
+/** 요청 쿠키가 관리자인지 본다 */
 export async function isAdmin() {
   const jar = await cookies();
-  return jar.get(ROLE_KEY)?.value === ROLE_OK;
+  return isOk(jar.get(ROLE_KEY)?.value);
+}
+
+/** 요청 쿠키가 로그인인지 본다 */
+export async function isAuthed() {
+  const jar = await cookies();
+  return isOn(jar.get(ROLE_KEY)?.value);
 }

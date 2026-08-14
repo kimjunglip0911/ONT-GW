@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
-import { passOk } from "../../_auth/check";
-import { setAdmin } from "../../_auth/cookie";
+import { asTok, hasCred, passOk } from "../../_auth/check";
+import { setRole } from "../../_auth/cookie";
+import { foldUid } from "../../_auth/fold";
+import { findUser } from "../../_db/find";
 
 export async function POST(req: Request) {
   let body: { id?: string; pass?: string };
@@ -9,10 +11,16 @@ export async function POST(req: Request) {
   } catch {
     return NextResponse.json({ ok: false }, { status: 400 });
   }
-  const env = process.env.ADMIN_PASS ?? "";
-  if (!passOk(body.id ?? "", body.pass ?? "", env)) {
+  const id = foldUid(body.id ?? "");
+  const pass = typeof body.pass === "string" ? body.pass : "";
+  if (!hasCred(id, pass)) {
     return NextResponse.json({ ok: false }, { status: 401 });
   }
-  await setAdmin();
-  return NextResponse.json({ ok: true });
+  const row = await findUser(id);
+  const tok = row && passOk(row.pass, pass) ? asTok(row.role) : "";
+  if (!tok) {
+    return NextResponse.json({ ok: false }, { status: 401 });
+  }
+  await setRole(tok);
+  return NextResponse.json({ ok: true, role: tok });
 }
