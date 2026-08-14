@@ -40,7 +40,7 @@ ONT-GW/
 │   │   ├── mark.ts                  # 공지 본문 허용 인라인 스타일
 │   │   ├── note.ts                  # public.notices insert
 │   │   ├── notes.ts                 # public.notices 조회
-│   │   ├── pwd.ts                   # public.users 비밀번호만 수정
+│   │   ├── pwd.ts                   # 비밀번호 수정·시드일 때만 변경
 │   │   ├── rank.ts                  # 고정·최신순 정렬
 │   │   ├── rank.test.ts             # 고정 정렬 테스트
 │   │   ├── sb.ts                    # secret 키 클라이언트
