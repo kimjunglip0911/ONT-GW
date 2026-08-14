@@ -9,16 +9,24 @@ ONT-GW/
 │   └── rules/                       # Cursor 에이전트 규칙
 │       ├── project-structure.mdc    # 레포 디렉터리 트리 정본
 │       └── rules.mdc                # 스택·명명·Git 개발 규칙
+├── docs/
+│   └── plans/                       # 구현 플랜
 ├── app/                             # App Router 루트
-│   ├── _auth/                       # 임시 관리자 인증
-│   │   ├── check.ts                 # 아이디·비밀번호 검증
-│   │   ├── cookie.ts                # 관리자 쿠키 설정·삭제
-│   │   ├── names.ts                 # 쿠키 키·로그인 아이디
-│   │   └── role.ts                  # 요청이 관리자인지 판별
+│   ├── _auth/                       # DB 사용자 세션
+│   │   ├── check.ts                 # 비밀번호·역할 매핑
+│   │   ├── cookie.ts                # 역할 쿠키 설정·삭제
+│   │   ├── fold.ts                  # 아이디 대문자 정규화
+│   │   ├── fold.test.ts             # 아이디 정규화 테스트
+│   │   ├── gate.ts                  # 공개 경로·next 허용
+│   │   ├── gate.test.ts             # 경로 게이트 테스트
+│   │   ├── names.ts                 # 쿠키 키·역할 값
+│   │   ├── role.ts                  # 관리자·로그인 여부
+│   │   └── role.test.ts             # 역할 매핑 테스트
 │   ├── _db/                         # Supabase 서버 접근
 │   │   ├── add.ts                   # public.users insert
 │   │   ├── cast.ts                  # DB 행 → 목록 User
 │   │   ├── cols.ts                  # 목록 select 컬럼
+│   │   ├── find.ts                  # uid로 로그인 행 조회
 │   │   ├── list.ts                  # public.users 조회
 │   │   ├── sb.ts                    # secret 키 클라이언트
 │   │   └── upd.ts                   # public.users 수정
@@ -28,13 +36,11 @@ ONT-GW/
 │   │   ├── chip.ts                  # 메뉴 행 활성 클래스
 │   │   ├── cx.ts                    # 클래스 문자열 합치기
 │   │   ├── draw.tsx                 # 모바일 드로어 메뉴
-│   │   ├── fields.tsx               # 로그인 아이디·비밀번호 칸
 │   │   ├── frame.tsx                # 레일·탑바·드로어 조립
 │   │   ├── glyph.tsx                # 메뉴 아이콘 매핑
 │   │   ├── hover.tsx                # 데스크톱 레일 펼침
 │   │   ├── kids.tsx                 # 하위 메뉴 링크
 │   │   ├── links.tsx                # 권한별 주 메뉴
-│   │   ├── login.tsx                # 로그인 모달
 │   │   ├── menu.ts                  # 직원·관리자 메뉴 정의
 │   │   ├── nest.tsx                 # 접히는 관리자 하위 메뉴
 │   │   ├── rail.tsx                 # 접힌 아이콘 레일
@@ -84,6 +90,10 @@ ONT-GW/
 │   │   │   └── route.ts             # 로그인 POST, 쿠키 발급
 │   │   └── logout/
 │   │       └── route.ts             # 로그아웃 POST, 쿠키 삭제
+│   ├── login/                       # 로그인 화면
+│   │   ├── fields.tsx               # 아이디·비밀번호 칸
+│   │   ├── form.tsx                 # 로그인 폼
+│   │   └── page.tsx                 # /login 페이지
 │   ├── attend/                      # 직원 근태 확인
 │   │   ├── board.tsx                # 내 출퇴근 일별 표
 │   │   ├── cards.tsx                # 오늘·주간 근태 요약
@@ -104,7 +114,7 @@ ONT-GW/
 ├── package.json                     # 스크립트·의존성
 ├── package-lock.json                # 잠긴 의존성 버전
 ├── postcss.config.mjs               # PostCSS(Tailwind)
-├── proxy.ts                         # /admin 비관리자 차단
+├── proxy.ts                         # 비로그인·직원 /admin 차단
 ├── README.md                        # 목적·실행·환경 변수
 ├── scripts/
 │   └── run.cjs                      # 로컬 CA 있으면 Node에 연결

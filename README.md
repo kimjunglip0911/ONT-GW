@@ -4,7 +4,7 @@
 
 Kuehne+Nagel 그룹웨어 웹앱. Next.js 풀스택만 사용한다. 별도 백엔드 프레임워크는 없다.
 
-디자인 초안 셸이 있다. 직원 페이지는 공지(`/notice`), 근태 확인(`/attend`)이다. 관리자는 `/admin` 허브에서 사용자 등록 & 조회, 급여 세팅, 공지사항 등록, 근태 관리 화면으로 들어간다. 사용자 등록 & 조회는 Supabase `public.users`에 저장한다. 한 화면에 등록 폼, 이름·ID 조회, 목록이 있고, 엑셀 양식 다운로드와 업로드가 있다. 자동 ID(`ONT000001`부터)와 기본급·기타급여 1–4를 받는다. 목록에서 행을 수정할 수 있다. ID는 고칠 수 없고, 비밀번호는 바꿀 때만 입력한다. 생성 ID 로그인은 아직 없다.
+디자인 초안 셸이 있다. 직원 페이지는 공지(`/notice`), 근태 확인(`/attend`)이다. 관리자는 `/admin` 허브에서 사용자 등록 & 조회, 급여 세팅, 공지사항 등록, 근태 관리 화면으로 들어간다. 사용자 등록 & 조회는 Supabase `public.users`에 저장한다. 한 화면에 등록 폼, 이름·ID 조회, 목록이 있고, 엑셀 양식 다운로드와 업로드가 있다. 자동 ID(`ONT000001`부터)와 기본급·기타급여 1–4를 받는다. 목록에서 행을 수정할 수 있다. ID는 고칠 수 없고, 비밀번호는 바꿀 때만 입력한다. 로그인은 등록된 아이디·비밀번호로 한다. `ONT`는 대소문자와 관계없이 대문자로 맞춘다. `role`이 관리자면 관리자 메뉴가 열리고, 직원이면 공지·근태만 쓴다. 로그인하지 않으면 `/login`으로 보낸다.
 
 ## 실행 방법
 
@@ -15,7 +15,7 @@ npm install
 npm run dev
 ```
 
-브라우저에서 http://localhost:3000 을 연다. 루트는 `/notice`로 보낸다.
+브라우저에서 http://localhost:3000 을 연다. 비로그인이면 `/login`으로 보낸다. 로그인한 뒤에는 루트가 `/notice`로 간다.
 
 | 명령 | 용도 |
 |:---|:---|
@@ -23,10 +23,11 @@ npm run dev
 | `npm run build` | 프로덕션 빌드 |
 | `npm run start` | 빌드 결과 실행 |
 | `npm run lint` | ESLint |
+| `npm test` | 로그인 아이디·권한 단위 테스트 |
 
 노트북에서는 왼쪽 아이콘 레일에 마우스를 올리면 메뉴가 펼쳐진다. 휴대폰 폭에서는 상단 메뉴 버튼을 쓴다.
 
-임시 관리자 아이디는 `ADMIN`이다. 비밀번호는 `.env.local`의 `ADMIN_PASS`다. 이 계정으로만 관리자 메뉴가 보인다. 사용자 화면에서 만든 ID로는 로그인되지 않는다. 펼친 메뉴에서 관리자를 누르면 하위 네 항목이 나온다. 아이콘 레일의 관리자는 `/admin` 허브로 간다. 비관리자가 `/admin`으로 오면 공지로 보낸다.
+로그인 아이디는 사용자 등록에서 만든 `ONT000001` 형식이다. 비밀번호는 등록·수정 때 넣은 값이다. 펼친 메뉴에서 관리자를 누르면 하위 네 항목이 나온다. 아이콘 레일의 관리자는 `/admin` 허브로 간다. 직원 계정이 `/admin`으로 오면 공지로 보낸다.
 
 ## 환경 변수
 
@@ -37,7 +38,6 @@ npm run dev
 | `NEXT_PUBLIC_SUPABASE_URL` | Project URL | Connect 또는 Settings → API |
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Publishable key (`sb_publishable_...`). 없으면 레거시 `anon` | Settings → API Keys |
 | `SUPABASE_SECRET_KEY` | Secret key (`sb_secret_...`). 없으면 레거시 `service_role` | Settings → API Keys |
-| `ADMIN_PASS` | 임시 관리자 비밀번호 | 로컬만. 디자인 초안용 |
 
 `SUPABASE_SECRET_KEY`는 서버 전용이다. `NEXT_PUBLIC_`을 붙이지 않는다.
 
@@ -48,4 +48,4 @@ npm run dev
 - 패키지 매니저는 npm만 사용한다. pnpm/yarn은 쓰지 않는다.
 - DB는 Supabase다. 키는 `.env.local`에만 둔다. `SUPABASE_SECRET_KEY`는 브라우저·채팅·커밋에 넣지 않는다. 사용자 등록·조회는 이 키로 서버에서만 `public.users`를 읽고 쓴다.
 - 회사망(Zscaler)에서는 Node가 DB HTTPS를 거부할 수 있다. `.ca/zs.pem`이 있으면 `npm run dev`가 그 인증서를 쓴다.
-- `ADMIN_PASS`도 `.env.local`에만 둔다. 이후 계정별 권한은 DB로 옮긴다.
+- 관리자 화면을 쓰려면 DB에 `role`이 관리자인 사용자가 한 명 이상 있어야 한다. 예전 `ADMIN` / `ADMIN_PASS` 임시 계정은 쓰지 않는다.

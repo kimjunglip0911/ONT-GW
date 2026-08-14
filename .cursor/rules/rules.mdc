@@ -12,7 +12,7 @@ alwaysApply: true
 - **린트:** ESLint (`eslint-config-next`)
 - **패키지 매니저:** npm
 - **DB:** Supabase 기반 (키는 `.env.local`, Git 금지)
-- **예정(미설치):** 공지사항, 급여명세 조회, 관리자 — 인증은 해당 기능 작업 때 추가
+- **인증:** `public.users` 아이디·비밀번호, `gw_role` 쿠키. 공지·급여 실데이터는 예정
 
 
 ## 1. 개발 시 준수 사항
