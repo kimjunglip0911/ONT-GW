@@ -6,26 +6,28 @@ import type { Draft } from "./data";
 import { Inputs } from "./inputs";
 import { fromForm } from "./read";
 
-type Props = { uid: string; onAdd: (row: Draft) => void };
+type Props = { uid: string; onAdd: (row: Draft) => Promise<string> };
 
 export function Form({ uid, onAdd }: Props) {
   const [err, setErr] = useState("");
 
-  function onSend(e: FormEvent<HTMLFormElement>) {
+  async function onSend(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const draft = fromForm(new FormData(e.currentTarget));
+    const form = e.currentTarget;
+    const draft = fromForm(new FormData(form));
     if (!draft) {
       setErr("필수 항목을 입력하세요.");
       return;
     }
-    onAdd(draft);
+    const fail = await onAdd(draft);
+    if (fail) { setErr(fail); return; }
     setErr("");
-    e.currentTarget.reset();
+    form.reset();
   }
 
   return (
     <form
-      onSubmit={onSend}
+      onSubmit={(e) => void onSend(e)}
       className="mb-6 grid grid-cols-5 gap-3 rounded-xl border border-line bg-card p-4"
     >
       <label className={row}>

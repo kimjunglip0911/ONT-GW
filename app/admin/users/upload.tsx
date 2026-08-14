@@ -8,7 +8,7 @@ import { saveTmpl } from "./tmpl";
 
 const btn = "rounded-md bg-ink px-3 py-2 text-sm text-card";
 
-type Props = { onMany: (list: Draft[]) => void };
+type Props = { onMany: (list: Draft[]) => Promise<{ n: number; err: string }> };
 
 export function Upload({ onMany }: Props) {
   const [msg, setMsg] = useState("");
@@ -23,8 +23,10 @@ export function Upload({ onMany }: Props) {
     try {
       const { ok, skip, err } = await loadXls(file);
       if (err) { setMsg(err); return; }
-      if (ok.length) onMany(ok);
-      setMsg(`${ok.length}명 추가, ${skip}행 건너뜀`);
+      if (!ok.length) { setMsg(`0명 추가, ${skip}행 건너뜀`); return; }
+      const saved = await onMany(ok);
+      if (saved.err) { setMsg(saved.err); return; }
+      setMsg(`${saved.n}명 추가, ${skip}행 건너뜀`);
     } catch {
       setMsg("파일을 읽을 수 없습니다.");
     }

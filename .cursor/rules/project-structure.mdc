@@ -15,6 +15,12 @@ ONT-GW/
 │   │   ├── cookie.ts                # 관리자 쿠키 설정·삭제
 │   │   ├── names.ts                 # 쿠키 키·로그인 아이디
 │   │   └── role.ts                  # 요청이 관리자인지 판별
+│   ├── _db/                         # Supabase 서버 접근
+│   │   ├── add.ts                   # public.users insert
+│   │   ├── cast.ts                  # DB 행 → 목록 User
+│   │   ├── cols.ts                  # 목록 select 컬럼
+│   │   ├── list.ts                  # public.users 조회
+│   │   └── sb.ts                    # secret 키 클라이언트
 │   ├── _shell/                      # 레이아웃 셸
 │   │   ├── auth.tsx                 # 로그인·로그아웃 버튼
 │   │   ├── brand.tsx                # 레일 로고·앱 이름
@@ -45,10 +51,11 @@ ONT-GW/
 │   │   ├── pay/                     # 급여 세팅 목업
 │   │   │   ├── form.tsx             # 시급·수당 비율 폼
 │   │   │   └── page.tsx             # 급여 세팅 페이지
-│   │   ├── users/                   # 사용자 등록 & 조회 (세션 목업)
-│   │   │   ├── acts.ts              # 단건·다건 목록 추가
-│   │   │   ├── data.ts              # 사용자 타입·시드
+│   │   ├── users/                   # 사용자 등록 & 조회 (DB)
+│   │   │   ├── data.ts              # 사용자 타입
 │   │   │   ├── field.tsx            # 등록 폼 입력 칸
+│   │   │   ├── filt.ts              # 이름·ID 조회 필터
+│   │   │   ├── find.tsx             # 사용자 조회 입력
 │   │   │   ├── form.tsx             # 단건 등록 폼
 │   │   │   ├── head.ts              # 엑셀 필수·양식 헤더
 │   │   │   ├── ids.ts               # ONT 자동 ID 생성
@@ -59,6 +66,7 @@ ONT-GW/
 │   │   │   ├── panel.tsx            # 사용자 목록 테이블
 │   │   │   ├── parse.ts             # 파일·시트 검증·파싱
 │   │   │   ├── read.ts              # 폼·셀에서 Draft 읽기
+│   │   │   ├── save.ts              # 단건·다건 저장 액션
 │   │   │   ├── shell.tsx            # 업로드·폼·목록 상태
 │   │   │   ├── tmpl.ts              # 엑셀 양식 다운로드
 │   │   │   ├── trow.tsx             # 목록 한 행

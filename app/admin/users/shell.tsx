@@ -1,29 +1,44 @@
 "use client";
 
 import { useState } from "react";
-import { addMany, addOne } from "./acts";
-import { SEED, type Draft } from "./data";
+import type { Draft, User } from "./data";
+import { byQuery } from "./filt";
+import { Find } from "./find";
 import { Form } from "./form";
 import { nextUid } from "./ids";
 import { Panel } from "./panel";
+import { saveMany, saveOne } from "./save";
 import { Upload } from "./upload";
 
-export function Shell() {
-  const [rows, setRows] = useState(SEED);
+export function Shell({ rows: init }: { rows: User[] }) {
+  const [rows, setRows] = useState(init);
+  const [q, setQ] = useState("");
 
-  function onAdd(row: Draft) {
-    setRows((cur) => addOne(cur, row));
+  async function onAdd(row: Draft) {
+    const { ok, err } = await saveOne(row);
+    if (!ok) return err || "저장에 실패했습니다.";
+    setRows((cur) => [...cur, ok]);
+    return "";
   }
 
-  function onMany(list: Draft[]) {
-    setRows((cur) => addMany(cur, list));
+  async function onMany(list: Draft[]) {
+    const { ok, err } = await saveMany(list);
+    if (err) return { n: 0, err };
+    setRows((cur) => [...cur, ...ok]);
+    return { n: ok.length, err: "" };
   }
+
+  const shown = byQuery(rows, q);
+  const empty = q.trim()
+    ? "조회 결과가 없습니다."
+    : "등록된 사용자가 없습니다.";
 
   return (
     <section>
       <Upload onMany={onMany} />
       <Form uid={nextUid(rows)} onAdd={onAdd} />
-      <Panel rows={rows} />
+      <Find q={q} setQ={setQ} />
+      <Panel empty={empty} rows={shown} />
     </section>
   );
 }
