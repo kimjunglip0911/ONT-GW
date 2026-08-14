@@ -1,16 +1,9 @@
 import "server-only";
 import { asNum } from "./num";
+import type { Pack } from "./rows";
 import { db } from "./sb";
 
-export type Pack = {
-  id: string;
-  name: string;
-  pay: number;
-  hours: number;
-  meal: number;
-  fuel: number;
-  is_def: boolean;
-};
+export type { Pack };
 
 function asInt(v: unknown) {
   const n = asNum(v);

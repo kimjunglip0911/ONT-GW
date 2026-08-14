@@ -1,9 +1,10 @@
 import "server-only";
 import { asNum } from "./num";
 import { okRate } from "./rate";
+import type { Tax } from "./rows";
 import { db } from "./sb";
 
-export type Tax = { id: string; name: string; rate: number; ord: number };
+export type { Tax };
 
 function asTax(row: Record<string, unknown>): Tax | null {
   const id = typeof row.id === "string" ? row.id : "";

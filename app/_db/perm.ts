@@ -1,8 +1,9 @@
 import "server-only";
 import type { Flags } from "./flags";
+import type { Perm } from "./rows";
 import { db } from "./sb";
 
-export type Perm = { id: string; name: string; pages: Flags; feats: Flags };
+export type { Perm };
 
 function asMap(v: unknown): Flags {
   if (!v || typeof v !== "object" || Array.isArray(v)) return {};
