@@ -4,7 +4,6 @@ import { Field } from "./field";
 export function Inputs() {
   return (
     <>
-      <Field name="pass" text="PW" type="password" />
       <Field name="name" text="이름" />
       <Field name="birth" text="생년월일" type="date" />
       <Field name="hired" text="입사일" type="date" />

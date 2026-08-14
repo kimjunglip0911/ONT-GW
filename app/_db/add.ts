@@ -1,4 +1,5 @@
 import "server-only";
+import { SEED } from "../_auth/seed";
 import type { Draft, User } from "../admin/users/data";
 import { nextUid } from "../admin/users/ids";
 import { toUser } from "./cast";
@@ -15,7 +16,7 @@ export async function addUsers(list: Draft[]): Promise<User[]> {
   const rows = list.map((row) => {
     const uid = nextUid(cur);
     cur = [...cur, { uid }];
-    return { uid, ...row };
+    return { uid, ...row, pass: SEED };
   });
   const { data, error } = await sb.from("users").insert(rows).select(COLS);
   if (error || !data) throw error ?? new Error("insert");

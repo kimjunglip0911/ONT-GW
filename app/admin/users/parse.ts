@@ -1,7 +1,7 @@
-import { MAX_B } from "./map";
-import type { Draft } from "./data";
-import { NEED } from "./head";
-import { fromCells } from "./read";
+import { MAX_B } from "./map.ts";
+import type { Draft } from "./data.ts";
+import { NEED } from "./head.ts";
+import { fromCells } from "./read.ts";
 
 export function fileOk(file: File) {
   const name = file.name.toLowerCase();
@@ -26,7 +26,7 @@ export function fromSheet(data: unknown[][]): {
   for (const row of data.slice(1)) {
     const blank = !row.some((c) => c != null && String(c).trim() !== "");
     if (blank) continue;
-    const draft = fromCells(row, col, head);
+    const draft = fromCells(row, head);
     if (draft) ok.push(draft);
     else skip += 1;
   }

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "node scripts/run.cjs start",
     "lint": "eslint",
-    "test": "node --experimental-strip-types --test ./app/_auth/*.test.ts ./app/_db/*.test.ts ./app/admin/notice/*.test.ts"
+    "test": "node --experimental-strip-types --test ./app/_auth/*.test.ts ./app/_db/*.test.ts ./app/admin/notice/*.test.ts ./app/admin/users/*.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.112.3",

@@ -1,4 +1,4 @@
-import { isRole, type Draft } from "./data";
+import { isRole, type Draft } from "./data.ts";
 
 export const MAX_B = 512 * 1024;
 
@@ -30,16 +30,15 @@ export function asEtc(v: unknown) {
 }
 
 export function toDraft(row: Record<string, unknown>): Draft | null {
-  const pass = asStr(row.pass);
   const name = asStr(row.name);
   const birth = asDay(row.birth);
   const hired = asDay(row.hired);
   const role = asStr(row.role);
   const pay = asPay(row.pay);
-  if (!pass || !name || !birth || !hired || !isRole(role)) return null;
+  if (!name || !birth || !hired || !isRole(role)) return null;
   if (!Number.isFinite(pay)) return null;
   return {
-    pass, name, birth, hired, pay, role,
+    name, birth, hired, pay, role,
     etc1: asEtc(row.etc1), etc2: asEtc(row.etc2),
     etc3: asEtc(row.etc3), etc4: asEtc(row.etc4),
   };

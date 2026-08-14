@@ -1,7 +1,6 @@
-export const NEED = ["PW", "이름", "생년월일", "기본급", "권한", "입사일"] as const;
+export const NEED = ["이름", "생년월일", "기본급", "권한", "입사일"] as const;
 
 export const TMPL = [
-  "PW",
   "이름",
   "생년월일",
   "입사일",

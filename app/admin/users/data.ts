@@ -15,7 +15,6 @@ export type User = {
 };
 
 export type Draft = {
-  pass: string;
   name: string;
   birth: string;
   hired: string;

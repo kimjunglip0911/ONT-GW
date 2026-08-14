@@ -1,9 +1,8 @@
-import type { Draft } from "./data";
-import { toDraft } from "./map";
+import type { Draft } from "./data.ts";
+import { toDraft } from "./map.ts";
 
 export function fromForm(fd: FormData): Draft | null {
   return toDraft({
-    pass: fd.get("pass"),
     name: fd.get("name"),
     birth: fd.get("birth"),
     hired: fd.get("hired"),
@@ -16,22 +15,17 @@ export function fromForm(fd: FormData): Draft | null {
   });
 }
 
-export function fromCells(
-  row: unknown[],
-  col: number[],
-  head: string[],
-): Draft | null {
+export function fromCells(row: unknown[], head: string[]): Draft | null {
   const take = (k: string) => {
     const i = head.indexOf(k);
     return i < 0 ? undefined : row[i];
   };
   return toDraft({
-    pass: row[col[0]],
-    name: row[col[1]],
-    birth: row[col[2]],
-    pay: row[col[3]],
-    role: row[col[4]],
-    hired: row[col[5]],
+    name: take("이름"),
+    birth: take("생년월일"),
+    pay: take("기본급"),
+    role: take("권한"),
+    hired: take("입사일"),
     etc1: take("기타급여1"),
     etc2: take("기타급여2"),
     etc3: take("기타급여3"),
