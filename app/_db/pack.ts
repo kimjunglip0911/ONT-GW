@@ -1,14 +1,9 @@
 import "server-only";
-import { asNum } from "./num";
+import { asInt } from "./num";
 import type { Pack } from "./rows";
 import { db } from "./sb";
 
 export type { Pack };
-
-function asInt(v: unknown) {
-  const n = asNum(v);
-  return Number.isFinite(n) && n >= 0 ? Math.floor(n) : NaN;
-}
 
 export function asPack(row: Record<string, unknown>): Pack | null {
   const id = typeof row.id === "string" ? row.id : "";

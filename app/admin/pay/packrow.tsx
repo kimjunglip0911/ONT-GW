@@ -37,9 +37,11 @@ export function PackRow({ row, onSet, onDel, onDef }: Props) {
       <div className="flex gap-2">
         <button className={btn} type="button" onClick={() => onSet(next)}>저장</button>
         {row.is_def ? <span className="text-xs text-muted">기본</span> : (
-          <button className={btn} type="button" onClick={() => onDef(row.id)}>기본으로</button>
+          <>
+            <button className={btn} type="button" onClick={() => onDef(row.id)}>기본으로</button>
+            <button className={btn} type="button" onClick={() => onDel(row.id)}>삭제</button>
+          </>
         )}
-        <button className={btn} type="button" onClick={() => onDel(row.id)}>삭제</button>
       </div>
     </li>
   );

@@ -45,7 +45,7 @@ ONT-GW/
 │   │   ├── mark.ts                  # 공지 본문 허용 인라인 스타일
 │   │   ├── note.ts                  # public.notices insert
 │   │   ├── notes.ts                 # public.notices 조회
-│   │   ├── num.ts                   # 숫자 파싱
+│   │   ├── num.ts                   # 숫자 파싱·정수
 │   │   ├── pack.ts                  # public.packs 조회
 │   │   ├── pack.test.ts             # 시급 버림 테스트
 │   │   ├── packdef.ts               # 기본 패키지 지정
@@ -99,6 +99,7 @@ ONT-GW/
 │   │   ├── pay/                     # 환경 설정 (DB)
 │   │   │   ├── checks.tsx           # 권한 페이지·기능 체크
 │   │   │   ├── labs.ts              # 페이지·기능 한글 라벨
+│   │   │   ├── packact.test.ts      # 패키지 저장 전 관리자 가드
 │   │   │   ├── packact.ts           # 패키지 저장 액션
 │   │   │   ├── packadd.tsx          # 패키지 추가 행
 │   │   │   ├── packnum.tsx          # 패키지 숫자 칸
@@ -107,6 +108,7 @@ ONT-GW/
 │   │   │   ├── page.tsx             # 환경 설정 페이지
 │   │   │   ├── pane.test.ts         # 아코디언 제목이 버튼
 │   │   │   ├── pane.tsx             # 영역 아코디언
+│   │   │   ├── permact.test.ts      # 권한 저장 전 관리자 가드
 │   │   │   ├── permact.ts           # 권한 저장 액션
 │   │   │   ├── permadd.tsx          # 역할 추가 행
 │   │   │   ├── permrow.tsx          # 역할 한 행

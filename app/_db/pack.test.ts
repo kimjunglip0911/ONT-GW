@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { asInt } from "./num.ts";
 import { wageOf } from "./wage.ts";
 
 test("3m over 209 hours is 14354", () => {
@@ -8,4 +9,9 @@ test("3m over 209 hours is 14354", () => {
 
 test("hours 0 is wage 0", () => {
   assert.equal(wageOf(1000, 0), 0);
+});
+
+test("asInt floors and rejects negative", () => {
+  assert.equal(asInt(1.9), 1);
+  assert.ok(Number.isNaN(asInt(-1)));
 });

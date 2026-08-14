@@ -21,10 +21,6 @@ export type Page = (typeof PAGES)[number];
 export type Feat = (typeof FEATS)[number];
 export type Flags = Record<string, boolean>;
 
-export function allOn(keys: readonly string[]): Flags {
-  return Object.fromEntries(keys.map((k) => [k, true]));
-}
-
 export function allOff(keys: readonly string[]): Flags {
   return Object.fromEntries(keys.map((k) => [k, false]));
 }

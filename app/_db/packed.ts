@@ -1,19 +1,20 @@
 import "server-only";
-import { db } from "./sb";
+import { asInt } from "./num";
 import { asPack, listPack, type Pack } from "./pack";
+import { db } from "./sb";
 
 const COLS = "id,name,pay,hours,meal,fuel,is_def";
 
 type Draft = Omit<Pack, "id" | "is_def">;
 
 function body(row: Draft) {
-  return {
-    name: row.name.trim(),
-    pay: row.pay,
-    hours: row.hours,
-    meal: row.meal,
-    fuel: row.fuel,
-  };
+  const name = row.name.trim();
+  const pay = asInt(row.pay);
+  const hours = asInt(row.hours);
+  const meal = asInt(row.meal);
+  const fuel = asInt(row.fuel);
+  if (!name || [pay, hours, meal, fuel].some((n) => !Number.isFinite(n))) throw new Error("pack");
+  return { name, pay, hours, meal, fuel };
 }
 
 /** 패키지 추가. 첫 건은 기본 */
