@@ -37,6 +37,7 @@ ONT-GW/
 │   │   ├── cols.ts                  # 목록 select 컬럼
 │   │   ├── del.ts                   # public.users 삭제
 │   │   ├── find.ts                  # uid로 로그인 행 조회
+│   │   ├── flags.ts                 # 페이지·기능 플래그 키
 │   │   ├── html.ts                  # 공지 본문 태그 정제
 │   │   ├── html.test.ts             # 본문 정제 테스트
 │   │   ├── hues.ts                  # 공지 본문 허용 글자 색
@@ -44,12 +45,25 @@ ONT-GW/
 │   │   ├── mark.ts                  # 공지 본문 허용 인라인 스타일
 │   │   ├── note.ts                  # public.notices insert
 │   │   ├── notes.ts                 # public.notices 조회
+│   │   ├── num.ts                   # 숫자 파싱
+│   │   ├── pack.ts                  # public.packs 조회
+│   │   ├── pack.test.ts             # 시급 버림 테스트
+│   │   ├── packdef.ts               # 기본 패키지 지정
+│   │   ├── packed.ts                # public.packs 추가·수정·삭제
+│   │   ├── perm.ts                  # public.perms 조회
+│   │   ├── permed.ts                # public.perms 추가·수정·삭제
 │   │   ├── pwd.ts                   # 비밀번호 수정·시드일 때만 변경
 │   │   ├── rank.ts                  # 고정·최신순 정렬
 │   │   ├── rank.test.ts             # 고정 정렬 테스트
+│   │   ├── rate.ts                  # 세금 요율 검증·씨드 이름
+│   │   ├── rows.ts                  # Tax·Pack·Perm 타입
 │   │   ├── sb.ts                    # secret 키 클라이언트
 │   │   ├── sizes.ts                 # 공지 본문 허용 글자 크기
-│   │   └── upd.ts                   # public.users 수정
+│   │   ├── tax.ts                   # public.taxes 조회
+│   │   ├── tax.test.ts              # 요율 범위·씨드 이름
+│   │   ├── taxed.ts                 # public.taxes 추가·수정·삭제
+│   │   ├── upd.ts                   # public.users 수정
+│   │   └── wage.ts                  # 기본급÷시간 시급
 │   ├── _shell/                      # 레이아웃 셸
 │   │   ├── auth.tsx                 # 로그인·로그아웃 버튼
 │   │   ├── brand.tsx                # 레일 로고·앱 이름
@@ -82,9 +96,27 @@ ONT-GW/
 │   │   │   ├── save.ts              # 공지 등록 액션
 │   │   │   ├── sizes.tsx            # 본문 글자 크기
 │   │   │   └── tools.tsx            # 본문 서식 도구
-│   │   ├── pay/                     # 환경 설정 목업
-│   │   │   ├── form.tsx             # 시급·수당 비율 폼
-│   │   │   └── page.tsx             # 환경 설정 페이지
+│   │   ├── pay/                     # 환경 설정 (DB)
+│   │   │   ├── checks.tsx           # 권한 페이지·기능 체크
+│   │   │   ├── labs.ts              # 페이지·기능 한글 라벨
+│   │   │   ├── packact.ts           # 패키지 저장 액션
+│   │   │   ├── packadd.tsx          # 패키지 추가 행
+│   │   │   ├── packnum.tsx          # 패키지 숫자 칸
+│   │   │   ├── packrow.tsx          # 패키지 한 행
+│   │   │   ├── packs.tsx            # 급여 패키지 목록
+│   │   │   ├── page.tsx             # 환경 설정 페이지
+│   │   │   ├── pane.test.ts         # 아코디언 제목이 버튼
+│   │   │   ├── pane.tsx             # 영역 아코디언
+│   │   │   ├── permact.ts           # 권한 저장 액션
+│   │   │   ├── permadd.tsx          # 역할 추가 행
+│   │   │   ├── permrow.tsx          # 역할 한 행
+│   │   │   ├── perms.tsx            # 권한 역할 목록
+│   │   │   ├── taxact.test.ts       # 세금 저장 전 관리자 가드
+│   │   │   ├── taxact.ts            # 세금 저장 액션
+│   │   │   ├── taxadd.tsx           # 세금 항목 추가
+│   │   │   ├── taxrow.tsx           # 세금 한 행
+│   │   │   ├── taxs.tsx             # 세금 공제 목록
+│   │   │   └── use.ts               # 목록 액션 후 행 갱신
 │   │   ├── users/                   # 사용자 등록 & 조회 (DB)
 │   │   │   ├── acts.tsx             # 행 수정·삭제 버튼
 │   │   │   ├── chg.ts               # 행 수정 저장 액션
@@ -93,6 +125,8 @@ ONT-GW/
 │   │   │   ├── ecell.tsx            # 행 수정 입력 칸
 │   │   │   ├── erow.tsx             # 수정 중인 목록 행
 │   │   │   ├── field.tsx            # 등록 폼 입력 칸
+│   │   │   ├── fill.ts              # 기본 패키지 → 등록 폼 칸
+│   │   │   ├── fill.test.ts         # 프리필 시급 버림
 │   │   │   ├── filt.ts              # 이름·ID 조회 필터
 │   │   │   ├── find.tsx             # 사용자 조회 입력
 │   │   │   ├── form.tsx             # 단건 등록 폼
