@@ -1,5 +1,7 @@
-import { MAX_B, toDraft } from "./map";
+import { MAX_B } from "./map";
 import type { Draft } from "./data";
+import { NEED } from "./head";
+import { fromCells } from "./read";
 
 export function fileOk(file: File) {
   const name = file.name.toLowerCase();
@@ -7,8 +9,6 @@ export function fileOk(file: File) {
   if (file.size > MAX_B) return "파일이 너무 큽니다.";
   return "";
 }
-
-const NEED = ["PW", "이름", "생년월일", "기본급", "권한", "입사일"] as const;
 
 export function fromSheet(data: unknown[][]): {
   ok: Draft[];
@@ -26,14 +26,7 @@ export function fromSheet(data: unknown[][]): {
   for (const row of data.slice(1)) {
     const blank = !row.some((c) => c != null && String(c).trim() !== "");
     if (blank) continue;
-    const draft = toDraft({
-      pass: row[col[0]],
-      name: row[col[1]],
-      birth: row[col[2]],
-      pay: row[col[3]],
-      role: row[col[4]],
-      hired: row[col[5]],
-    });
+    const draft = fromCells(row, col, head);
     if (draft) ok.push(draft);
     else skip += 1;
   }

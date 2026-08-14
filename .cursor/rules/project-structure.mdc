@@ -5,92 +5,96 @@ alwaysApply: true
 
 ```
 ONT-GW/
-  .cursor/
-    rules/
-      project-structure.mdc
-      rules.mdc
-  app/
-    _auth/
-      check.ts
-      cookie.ts
-      names.ts
-      role.ts
-    _shell/
-      auth.tsx
-      brand.tsx
-      chip.ts
-      cx.ts
-      draw.tsx
-      fields.tsx
-      frame.tsx
-      glyph.tsx
-      hover.tsx
-      kids.tsx
-      links.tsx
-      login.tsx
-      menu.ts
-      nest.tsx
-      rail.tsx
-      sider.tsx
-      title.ts
-      topbar.tsx
-    admin/
-      attend/
-        data.ts
-        page.tsx
-        table.tsx
-      notice/
-        form.tsx
-        page.tsx
-      pay/
-        form.tsx
-        page.tsx
-      users/
-        acts.ts
-        data.ts
-        find.tsx
-        form.tsx
-        ids.ts
-        inputs.tsx
-        map.ts
-        page.tsx
-        panel.tsx
-        parse.ts
-        shell.tsx
-        tabs.tsx
-        upload.tsx
-      box.ts
-      hub.tsx
-      page.tsx
-    api/
-      login/
-        route.ts
-      logout/
-        route.ts
-    attend/
-      board.tsx
-      cards.tsx
-      data.ts
-      page.tsx
-    notice/
-      data.ts
-      list.tsx
-      page.tsx
-    globals.css
-    layout.tsx
-    page.tsx
-  .gitignore
-  AGENTS.md
-  CLAUDE.md
-  eslint.config.mjs
-  next.config.ts
-  package.json
-  package-lock.json
-  postcss.config.mjs
-  proxy.ts
-  README.md
-  ts6hook.cjs
-  tsconfig.json
+├── .cursor/
+│   └── rules/                       # Cursor 에이전트 규칙
+│       ├── project-structure.mdc    # 레포 디렉터리 트리 정본
+│       └── rules.mdc                # 스택·명명·Git 개발 규칙
+├── app/                             # App Router 루트
+│   ├── _auth/                       # 임시 관리자 인증
+│   │   ├── check.ts                 # 아이디·비밀번호 검증
+│   │   ├── cookie.ts                # 관리자 쿠키 설정·삭제
+│   │   ├── names.ts                 # 쿠키 키·로그인 아이디
+│   │   └── role.ts                  # 요청이 관리자인지 판별
+│   ├── _shell/                      # 레이아웃 셸
+│   │   ├── auth.tsx                 # 로그인·로그아웃 버튼
+│   │   ├── brand.tsx                # 레일 로고·앱 이름
+│   │   ├── chip.ts                  # 메뉴 행 활성 클래스
+│   │   ├── cx.ts                    # 클래스 문자열 합치기
+│   │   ├── draw.tsx                 # 모바일 드로어 메뉴
+│   │   ├── fields.tsx               # 로그인 아이디·비밀번호 칸
+│   │   ├── frame.tsx                # 레일·탑바·드로어 조립
+│   │   ├── glyph.tsx                # 메뉴 아이콘 매핑
+│   │   ├── hover.tsx                # 데스크톱 레일 펼침
+│   │   ├── kids.tsx                 # 하위 메뉴 링크
+│   │   ├── links.tsx                # 권한별 주 메뉴
+│   │   ├── login.tsx                # 로그인 모달
+│   │   ├── menu.ts                  # 직원·관리자 메뉴 정의
+│   │   ├── nest.tsx                 # 접히는 관리자 하위 메뉴
+│   │   ├── rail.tsx                 # 접힌 아이콘 레일
+│   │   ├── sider.tsx                # 펼친 텍스트 사이드바
+│   │   ├── title.ts                 # 경로별 페이지 제목
+│   │   └── topbar.tsx               # 상단 제목·모바일 메뉴
+│   ├── admin/                       # 관리자 화면
+│   │   ├── attend/                  # 근태 관리 목업
+│   │   │   ├── data.ts              # 직원 근태 목업 행
+│   │   │   ├── page.tsx             # 근태 관리 페이지
+│   │   │   └── table.tsx            # 근태 목록 테이블
+│   │   ├── notice/                  # 공지 등록 목업
+│   │   │   ├── form.tsx             # 공지 작성 폼
+│   │   │   └── page.tsx             # 공지사항 등록 페이지
+│   │   ├── pay/                     # 급여 세팅 목업
+│   │   │   ├── form.tsx             # 시급·수당 비율 폼
+│   │   │   └── page.tsx             # 급여 세팅 페이지
+│   │   ├── users/                   # 사용자 등록 (세션 목업)
+│   │   │   ├── acts.ts              # 단건·다건 목록 추가
+│   │   │   ├── data.ts              # 사용자 타입·시드
+│   │   │   ├── field.tsx            # 등록 폼 입력 칸
+│   │   │   ├── form.tsx             # 단건 등록 폼
+│   │   │   ├── head.ts              # 엑셀 필수·양식 헤더
+│   │   │   ├── ids.ts               # ONT 자동 ID 생성
+│   │   │   ├── inputs.tsx           # 등록 폼 필드 묶음
+│   │   │   ├── load.ts              # xlsx 시트 읽기
+│   │   │   ├── map.ts               # 셀 값을 Draft로 변환
+│   │   │   ├── page.tsx             # 사용자 등록 페이지
+│   │   │   ├── panel.tsx            # 사용자 목록 테이블
+│   │   │   ├── parse.ts             # 파일·시트 검증·파싱
+│   │   │   ├── read.ts              # 폼·셀에서 Draft 읽기
+│   │   │   ├── shell.tsx            # 업로드·폼·목록 상태
+│   │   │   ├── tmpl.ts              # 엑셀 양식 다운로드
+│   │   │   ├── trow.tsx             # 목록 한 행
+│   │   │   └── upload.tsx           # 엑셀 올리기·양식 받기
+│   │   ├── box.ts                   # 관리자 폼 공통 클래스
+│   │   ├── hub.tsx                  # 하위 화면 바로가기 카드
+│   │   └── page.tsx                 # 관리자 허브 페이지
+│   ├── api/                         # Route Handlers
+│   │   ├── login/
+│   │   │   └── route.ts             # 로그인 POST, 쿠키 발급
+│   │   └── logout/
+│   │       └── route.ts             # 로그아웃 POST, 쿠키 삭제
+│   ├── attend/                      # 직원 근태 확인
+│   │   ├── board.tsx                # 내 출퇴근 일별 표
+│   │   ├── cards.tsx                # 오늘·주간 근태 요약
+│   │   ├── data.ts                  # 내 근태 목업 데이터
+│   │   └── page.tsx                 # 근태 확인 페이지
+│   ├── notice/                      # 직원 공지
+│   │   ├── data.ts                  # 공지 타입·목업 목록
+│   │   ├── list.tsx                 # 공지 목록 UI
+│   │   └── page.tsx                 # 공지 페이지
+│   ├── globals.css                  # Tailwind·테마 토큰
+│   ├── layout.tsx                   # 루트 레이아웃·셸 연결
+│   └── page.tsx                     # /notice 로 리다이렉트
+├── .gitignore                       # Git 제외 목록
+├── AGENTS.md                        # Next.js 에이전트 안내
+├── CLAUDE.md                        # AGENTS.md 위임
+├── eslint.config.mjs                # ESLint 설정
+├── next.config.ts                   # Next.js 설정
+├── package.json                     # 스크립트·의존성
+├── package-lock.json                # 잠긴 의존성 버전
+├── postcss.config.mjs               # PostCSS(Tailwind)
+├── proxy.ts                         # /admin 비관리자 차단
+├── README.md                        # 목적·실행·환경 변수
+├── ts6hook.cjs                      # ESLint용 TS 6 래퍼
+└── tsconfig.json                    # TypeScript 컴파일 설정
 ```
 
 - `node_modules/`, `.next/` 는 생성물이며 트리에 넣지 않는다.

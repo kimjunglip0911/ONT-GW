@@ -24,6 +24,11 @@ function asPay(v: unknown) {
   return Number.isFinite(n) ? n : NaN;
 }
 
+function asEtc(v: unknown) {
+  const n = asPay(v);
+  return Number.isFinite(n) ? n : 0;
+}
+
 export function toDraft(row: Record<string, unknown>): Draft | null {
   const pass = asStr(row.pass);
   const name = asStr(row.name);
@@ -33,5 +38,9 @@ export function toDraft(row: Record<string, unknown>): Draft | null {
   const pay = asPay(row.pay);
   if (!pass || !name || !birth || !hired || !isRole(role)) return null;
   if (!Number.isFinite(pay)) return null;
-  return { pass, name, birth, pay, role, hired };
+  return {
+    pass, name, birth, hired, pay, role,
+    etc1: asEtc(row.etc1), etc2: asEtc(row.etc2),
+    etc3: asEtc(row.etc3), etc4: asEtc(row.etc4),
+  };
 }

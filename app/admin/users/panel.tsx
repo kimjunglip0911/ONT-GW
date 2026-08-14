@@ -1,19 +1,10 @@
 import type { User } from "./data";
+import { Trow } from "./trow";
 
-const COLS = ["ID", "이름", "생년월일", "기본급", "권한", "입사일"] as const;
-
-function Row({ row }: { row: User }) {
-  return (
-    <tr className="border-b border-line last:border-0">
-      <td className="px-4 py-2">{row.uid}</td>
-      <td className="px-4 py-2">{row.name}</td>
-      <td className="px-4 py-2">{row.birth}</td>
-      <td className="px-4 py-2">{row.pay.toLocaleString()}</td>
-      <td className="px-4 py-2">{row.role}</td>
-      <td className="px-4 py-2">{row.hired}</td>
-    </tr>
-  );
-}
+const COLS = [
+  "ID", "이름", "생년월일", "입사일", "기본급",
+  "기타1", "기타2", "기타3", "기타4", "권한",
+] as const;
 
 export function Panel({ rows }: { rows: User[] }) {
   return (
@@ -31,12 +22,12 @@ export function Panel({ rows }: { rows: User[] }) {
         <tbody>
           {rows.length === 0 ? (
             <tr>
-              <td className="px-4 py-3 text-muted" colSpan={6}>
-                검색 결과가 없습니다.
+              <td className="px-4 py-3 text-muted" colSpan={COLS.length}>
+                등록된 사용자가 없습니다.
               </td>
             </tr>
           ) : (
-            rows.map((row) => <Row key={row.uid} row={row} />)
+            rows.map((row) => <Trow key={row.uid} row={row} />)
           )}
         </tbody>
       </table>
