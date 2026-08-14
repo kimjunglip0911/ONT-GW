@@ -12,9 +12,9 @@ export const STAFF: NavItem[] = [
 
 export const ADMIN_KIDS: NavItem[] = [
   { href: "/admin/users", label: "사용자 등록 & 조회", icon: "user" },
-  { href: "/admin/pay", label: "급여 세팅", icon: "pay" },
   { href: "/admin/notice", label: "공지사항 등록", icon: "post" },
   { href: "/admin/attend", label: "근태 관리", icon: "time" },
+  { href: "/admin/pay", label: "환경 설정", icon: "pay" },
 ];
 
 const ADMIN_ITEM: NavItem = {
