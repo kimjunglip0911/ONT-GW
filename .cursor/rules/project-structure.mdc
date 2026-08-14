@@ -26,6 +26,7 @@ ONT-GW/
 │   │   ├── add.ts                   # public.users insert
 │   │   ├── cast.ts                  # DB 행 → 목록 User
 │   │   ├── cols.ts                  # 목록 select 컬럼
+│   │   ├── del.ts                   # public.users 삭제
 │   │   ├── find.ts                  # uid로 로그인 행 조회
 │   │   ├── list.ts                  # public.users 조회
 │   │   ├── sb.ts                    # secret 키 클라이언트
@@ -59,8 +60,10 @@ ONT-GW/
 │   │   │   ├── form.tsx             # 시급·수당 비율 폼
 │   │   │   └── page.tsx             # 급여 세팅 페이지
 │   │   ├── users/                   # 사용자 등록 & 조회 (DB)
+│   │   │   ├── acts.tsx             # 행 수정·삭제 버튼
 │   │   │   ├── chg.ts               # 행 수정 저장 액션
 │   │   │   ├── data.ts              # 사용자 타입
+│   │   │   ├── drop.ts              # 행 삭제 액션
 │   │   │   ├── ecell.tsx            # 행 수정 입력 칸
 │   │   │   ├── erow.tsx             # 수정 중인 목록 행
 │   │   │   ├── field.tsx            # 등록 폼 입력 칸
@@ -81,7 +84,8 @@ ONT-GW/
 │   │   │   ├── shell.tsx            # 업로드·폼·목록 상태
 │   │   │   ├── tmpl.ts              # 엑셀 양식 다운로드
 │   │   │   ├── trow.tsx             # 목록 한 행
-│   │   │   └── upload.tsx           # 엑셀 올리기·양식 받기
+│   │   │   ├── upload.tsx           # 엑셀 올리기·양식 받기
+│   │   │   └── use.ts               # 목록 상태·저장·삭제
 │   │   ├── box.ts                   # 관리자 폼 공통 클래스
 │   │   ├── hub.tsx                  # 하위 화면 바로가기 카드
 │   │   └── page.tsx                 # 관리자 허브 페이지

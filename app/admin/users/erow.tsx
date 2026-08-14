@@ -40,7 +40,7 @@ export function Erow({ row, onSave, onQuit }: Props) {
       <Ecell onVal={(v) => set("etc4", v)} type="number" value={edit.etc4} />
       <Esel onVal={(v) => set("role", v)} value={edit.role} />
       <Ecell hint="변경 시" onVal={(v) => set("pass", v)} type="password" value={edit.pass} />
-      <td className="px-2 py-2">
+      <td className="w-px whitespace-nowrap px-2 py-2">
         <button className={btn} onClick={() => void onOk()} type="button">저장</button>
         {err ? <p className="mt-1 text-xs text-muted">{err}</p> : null}
       </td>
