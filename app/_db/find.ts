@@ -10,7 +10,7 @@ export async function findUser(uid: string): Promise<Cred | null> {
     .select("uid,pass,role")
     .eq("uid", uid)
     .maybeSingle();
-  if (error) throw error;
+  if (error) throw new Error(error.message);
   if (!data) return null;
   const pass = typeof data.pass === "string" ? data.pass : "";
   const role = typeof data.role === "string" ? data.role : "";

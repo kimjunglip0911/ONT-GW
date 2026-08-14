@@ -16,7 +16,12 @@ export async function POST(req: Request) {
   if (!hasCred(id, pass)) {
     return NextResponse.json({ ok: false }, { status: 401 });
   }
-  const row = await findUser(id);
+  let row;
+  try {
+    row = await findUser(id);
+  } catch {
+    return NextResponse.json({ ok: false }, { status: 503 });
+  }
   const tok = row && passOk(row.pass, pass) ? asTok(row.role) : "";
   if (!row || !tok) {
     return NextResponse.json({ ok: false }, { status: 401 });
