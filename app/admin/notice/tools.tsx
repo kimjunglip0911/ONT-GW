@@ -5,6 +5,8 @@ import {
   AlignCenter, AlignLeft, AlignRight,
   Bold, Italic, List, ListOrdered, Underline,
 } from "lucide-react";
+import { Hues } from "./hues";
+import { Sizes } from "./sizes";
 
 const btn = "rounded p-1";
 
@@ -20,7 +22,7 @@ export function Tools({ editor }: { editor: Editor }) {
     { on: editor.isActive({ textAlign: "right" }), run: () => editor.chain().focus().setTextAlign("right").run(), Icon: AlignRight },
   ];
   return (
-    <div className="flex flex-wrap gap-1 border-b border-line p-2">
+    <div className="flex flex-wrap items-center gap-1 border-b border-line p-2">
       {items.map((it, i) => (
         <button
           className={it.on ? `${btn} bg-ink text-card` : `${btn} text-ink`}
@@ -31,6 +33,8 @@ export function Tools({ editor }: { editor: Editor }) {
           <it.Icon className="size-4" />
         </button>
       ))}
+      <Sizes editor={editor} />
+      <Hues editor={editor} />
     </div>
   );
 }

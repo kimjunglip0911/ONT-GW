@@ -31,12 +31,15 @@ ONT-GW/
 │   │   ├── find.ts                  # uid로 로그인 행 조회
 │   │   ├── html.ts                  # 공지 본문 태그 정제
 │   │   ├── html.test.ts             # 본문 정제 테스트
+│   │   ├── hues.ts                  # 공지 본문 허용 글자 색
 │   │   ├── list.ts                  # public.users 조회
+│   │   ├── mark.ts                  # 공지 본문 허용 인라인 스타일
 │   │   ├── note.ts                  # public.notices insert
 │   │   ├── notes.ts                 # public.notices 조회
 │   │   ├── rank.ts                  # 고정·최신순 정렬
 │   │   ├── rank.test.ts             # 고정 정렬 테스트
 │   │   ├── sb.ts                    # secret 키 클라이언트
+│   │   ├── sizes.ts                 # 공지 본문 허용 글자 크기
 │   │   └── upd.ts                   # public.users 수정
 │   ├── _shell/                      # 레이아웃 셸
 │   │   ├── auth.tsx                 # 로그인·로그아웃 버튼
@@ -63,9 +66,12 @@ ONT-GW/
 │   │   ├── notice/                  # 공지사항 등록 (DB)
 │   │   │   ├── edit.tsx             # 본문 Tiptap 편집기
 │   │   │   ├── form.tsx             # 공지 작성 폼
+│   │   │   ├── form.test.ts         # 본문 라벨이 도구를 감싸지 않음
+│   │   │   ├── hues.tsx             # 본문 글자 색 팔레트
 │   │   │   ├── meta.tsx             # 제목·구분·고정 일수
 │   │   │   ├── page.tsx             # 공지사항 등록 페이지
 │   │   │   ├── save.ts              # 공지 등록 액션
+│   │   │   ├── sizes.tsx            # 본문 글자 크기
 │   │   │   └── tools.tsx            # 본문 서식 도구
 │   │   ├── pay/                     # 급여 세팅 목업
 │   │   │   ├── form.tsx             # 시급·수당 비율 폼

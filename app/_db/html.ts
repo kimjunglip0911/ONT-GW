@@ -1,4 +1,6 @@
-const ALLOW = new Set(["p", "br", "strong", "em", "u", "ul", "ol", "li"]);
+import { cssOf, hasMark } from "./mark.ts";
+
+const ALLOW = new Set(["p", "br", "strong", "em", "u", "ul", "ol", "li", "span"]);
 
 /** 태그를 뺀 본문 글자 */
 export function textOf(html: string) {
@@ -21,11 +23,8 @@ function keepTag(slash: string, name: string, attrs: string) {
   if (!ALLOW.has(tag)) return "";
   if (slash) return `</${tag}>`;
   if (tag === "br") return "<br>";
-  const align = /text-align\s*:\s*(left|center|right)/i.exec(attrs);
-  if (align && (tag === "p" || tag === "li")) {
-    return `<${tag} style="text-align:${align[1].toLowerCase()}">`;
-  }
-  return `<${tag}>`;
+  if (tag === "span" && !hasMark(attrs)) return "";
+  return `<${tag}${cssOf(tag, attrs)}>`;
 }
 
 /** 허용 태그만 남긴다 */

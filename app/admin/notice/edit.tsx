@@ -1,9 +1,11 @@
 "use client";
 
+import { Color } from "@tiptap/extension-color";
+import TextAlign from "@tiptap/extension-text-align";
+import { FontSize, TextStyle } from "@tiptap/extension-text-style";
+import Underline from "@tiptap/extension-underline";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import TextAlign from "@tiptap/extension-text-align";
-import Underline from "@tiptap/extension-underline";
 import { Tools } from "./tools";
 
 const body =
@@ -17,6 +19,9 @@ export function Edit({ onHtml }: { onHtml: (html: string) => void }) {
         heading: false, code: false, codeBlock: false,
         blockquote: false, strike: false, horizontalRule: false,
       }),
+      TextStyle,
+      Color,
+      FontSize,
       Underline,
       TextAlign.configure({ types: ["paragraph"] }),
     ],
