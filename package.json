@@ -6,7 +6,8 @@
     "dev": "node scripts/run.cjs dev",
     "build": "next build",
     "start": "node scripts/run.cjs start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "node --experimental-strip-types --test ./app/_auth/*.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.112.3",
