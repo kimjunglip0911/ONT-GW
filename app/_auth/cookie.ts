@@ -22,5 +22,5 @@ export async function setRole(role: string) {
 /** 역할 쿠키를 지운다 */
 export async function clearRole() {
   const jar = await cookies();
-  jar.delete(ROLE_KEY);
+  jar.set(ROLE_KEY, "", { ...flags(), maxAge: 0 });
 }

@@ -37,3 +37,11 @@ test("staff next admin is dropped", () => {
 test("protocol-relative next is dropped", () => {
   assert.equal(safeNext("//evil", ROLE_OK), "");
 });
+
+test("dot-dot next is dropped", () => {
+  assert.equal(safeNext("/attend/../../../admin", ROLE_STAFF), "");
+});
+
+test("backslash next is dropped", () => {
+  assert.equal(safeNext("/\\evil.com", ROLE_OK), "");
+});

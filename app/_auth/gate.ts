@@ -22,9 +22,16 @@ export function homeOf(tok: string) {
 
 /** 안전한 next만 남긴다 */
 export function safeNext(raw: string, tok: string) {
-  if (!raw.startsWith("/") || raw.startsWith("//")) return "";
-  if (raw.startsWith("/login")) return "";
-  if (tok !== ROLE_OK && isAdminPath(raw.split("?")[0] ?? raw)) return "";
+  let path = raw.trim();
+  try {
+    path = decodeURIComponent(path);
+  } catch {
+    return "";
+  }
+  if (path.includes("\\") || path.includes("..")) return "";
+  if (!path.startsWith("/") || path.startsWith("//")) return "";
+  if (path.startsWith("/login")) return "";
+  if (tok !== ROLE_OK && isAdminPath(path.split("?")[0] ?? path)) return "";
   if (tok !== ROLE_OK && tok !== ROLE_STAFF) return "";
-  return raw;
+  return path;
 }
