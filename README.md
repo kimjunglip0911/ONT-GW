@@ -4,7 +4,7 @@
 
 Kuehne+Nagel 그룹웨어 웹앱. Next.js 풀스택만 사용한다. 별도 백엔드 프레임워크는 없다.
 
-디자인 초안 셸이 있다. 직원 페이지는 공지(`/notice`), 근태 확인(`/attend`)이다. 관리자는 `/admin` 허브에서 사용자 등록 & 조회, 급여 세팅, 공지사항 등록, 근태 관리 화면으로 들어간다. 사용자 등록 & 조회는 Supabase `public.users`에 저장한다. 한 화면에 등록 폼, 이름·ID 조회, 목록이 있고, 엑셀 양식 다운로드와 업로드가 있다. 자동 ID(`ONT000001`부터)와 기본급·기타급여 1–4를 받는다. 목록에는 비밀번호를 넣지 않는다. 생성 ID 로그인은 아직 없다.
+디자인 초안 셸이 있다. 직원 페이지는 공지(`/notice`), 근태 확인(`/attend`)이다. 관리자는 `/admin` 허브에서 사용자 등록 & 조회, 급여 세팅, 공지사항 등록, 근태 관리 화면으로 들어간다. 사용자 등록 & 조회는 Supabase `public.users`에 저장한다. 한 화면에 등록 폼, 이름·ID 조회, 목록이 있고, 엑셀 양식 다운로드와 업로드가 있다. 자동 ID(`ONT000001`부터)와 기본급·기타급여 1–4를 받는다. 목록에서 행을 수정할 수 있다. ID는 고칠 수 없고, 비밀번호는 바꿀 때만 입력한다. 생성 ID 로그인은 아직 없다.
 
 ## 실행 방법
 
@@ -47,4 +47,5 @@ npm run dev
 - `next.config.ts`에서 `experimental.useTypeScriptCli`를 `false`로 두면 TypeScript 7과 함께 `next build`가 실패할 수 있다.
 - 패키지 매니저는 npm만 사용한다. pnpm/yarn은 쓰지 않는다.
 - DB는 Supabase다. 키는 `.env.local`에만 둔다. `SUPABASE_SECRET_KEY`는 브라우저·채팅·커밋에 넣지 않는다. 사용자 등록·조회는 이 키로 서버에서만 `public.users`를 읽고 쓴다.
+- 회사망(Zscaler)에서는 Node가 DB HTTPS를 거부할 수 있다. `.ca/zs.pem`이 있으면 `npm run dev`가 그 인증서를 쓴다.
 - `ADMIN_PASS`도 `.env.local`에만 둔다. 이후 계정별 권한은 DB로 옮긴다.

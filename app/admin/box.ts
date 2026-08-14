@@ -7,3 +7,7 @@ export const cell =
 export const row = "flex min-w-0 items-center gap-2 text-sm";
 
 export const lab = "w-24 shrink-0";
+
+export const tiny =
+  "w-full min-w-16 rounded-md border border-line bg-canvas px-2 py-1 text-sm outline-none focus:border-ink";
+

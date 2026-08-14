@@ -2,12 +2,12 @@ import { isRole, type Draft } from "./data";
 
 export const MAX_B = 512 * 1024;
 
-function asStr(v: unknown) {
+export function asStr(v: unknown) {
   if (typeof v === "number" && Number.isFinite(v)) return String(v);
   return typeof v === "string" ? v.trim() : "";
 }
 
-function asDay(v: unknown) {
+export function asDay(v: unknown) {
   if (v instanceof Date && !Number.isNaN(v.getTime())) {
     const y = v.getFullYear();
     const m = String(v.getMonth() + 1).padStart(2, "0");
@@ -18,13 +18,13 @@ function asDay(v: unknown) {
   return /^\d{4}-\d{2}-\d{2}/.test(s) ? s.slice(0, 10) : "";
 }
 
-function asPay(v: unknown) {
+export function asPay(v: unknown) {
   if (typeof v === "number") return v;
   const n = Number(String(v).replaceAll(",", ""));
   return Number.isFinite(n) ? n : NaN;
 }
 
-function asEtc(v: unknown) {
+export function asEtc(v: unknown) {
   const n = asPay(v);
   return Number.isFinite(n) ? n : 0;
 }

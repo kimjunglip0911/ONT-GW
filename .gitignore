@@ -33,6 +33,9 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# 회사 TLS 검사(Zscaler)용 로컬 CA. Git에 올리지 않는다.
+.ca/
+
 # vercel
 .vercel
 

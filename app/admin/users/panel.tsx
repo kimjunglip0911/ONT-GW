@@ -1,14 +1,19 @@
 import type { User } from "./data";
+import type { Patch } from "./patch";
 import { Trow } from "./trow";
 
 const COLS = [
   "ID", "이름", "생년월일", "입사일", "기본급",
-  "기타1", "기타2", "기타3", "기타4", "권한",
+  "기타1", "기타2", "기타3", "기타4", "권한", "PW", "수정",
 ] as const;
 
-type Props = { rows: User[]; empty: string };
+type Props = {
+  rows: User[];
+  empty: string;
+  onEdit: (row: Patch) => Promise<string>;
+};
 
-export function Panel({ rows, empty }: Props) {
+export function Panel({ rows, empty, onEdit }: Props) {
   return (
     <div className="overflow-x-auto rounded-xl border border-line bg-card">
       <table className="w-full min-w-xl text-left text-sm">
@@ -29,7 +34,9 @@ export function Panel({ rows, empty }: Props) {
               </td>
             </tr>
           ) : (
-            rows.map((row) => <Trow key={row.uid} row={row} />)
+            rows.map((row) => (
+              <Trow key={row.uid} onEdit={onEdit} row={row} />
+            ))
           )}
         </tbody>
       </table>
