@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans_KR } from "next/font/google";
-import { isAdmin } from "./_auth/role";
+import { isAdmin, isAuthed } from "./_auth/role";
 import { Frame } from "./_shell/frame";
 import "./globals.css";
 
@@ -17,10 +17,13 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const admin = await isAdmin();
+  const authed = await isAuthed();
   return (
     <html lang="ko" className={noto.className}>
       <body>
-        <Frame admin={admin}>{children}</Frame>
+        <Frame admin={admin} authed={authed}>
+          {children}
+        </Frame>
       </body>
     </html>
   );

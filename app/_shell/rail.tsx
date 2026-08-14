@@ -2,9 +2,9 @@ import { AuthBtn } from "./auth";
 import { Brand } from "./brand";
 import { Links } from "./links";
 
-type Props = { admin: boolean; onLogin: () => void };
+type Props = { admin: boolean; authed: boolean };
 
-export function Rail({ admin, onLogin }: Props) {
+export function Rail({ admin, authed }: Props) {
   return (
     <nav
       className="flex h-full flex-col bg-rail text-rail-fg"
@@ -12,11 +12,9 @@ export function Rail({ admin, onLogin }: Props) {
     >
       <Brand />
       <div className="flex-1">
-        <Links admin={admin} mode="icon" />
+        {authed ? <Links admin={admin} mode="icon" /> : null}
       </div>
-      <div className="p-2">
-        <AuthBtn admin={admin} mode="icon" onLogin={onLogin} />
-      </div>
+      <div className="p-2">{authed ? <AuthBtn mode="icon" /> : null}</div>
     </nav>
   );
 }

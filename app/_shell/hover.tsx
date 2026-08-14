@@ -4,9 +4,9 @@ import { useState } from "react";
 import { Rail } from "./rail";
 import { Sider } from "./sider";
 
-type Props = { admin: boolean; onLogin: () => void };
+type Props = { admin: boolean; authed: boolean };
 
-export function Hover({ admin, onLogin }: Props) {
+export function Hover({ admin, authed }: Props) {
   const [open, setOpen] = useState(false);
   return (
     <div
@@ -19,9 +19,9 @@ export function Hover({ admin, onLogin }: Props) {
       onMouseLeave={() => setOpen(false)}
     >
       {open ? (
-        <Sider admin={admin} onLogin={onLogin} />
+        <Sider admin={admin} authed={authed} />
       ) : (
-        <Rail admin={admin} onLogin={onLogin} />
+        <Rail admin={admin} authed={authed} />
       )}
     </div>
   );

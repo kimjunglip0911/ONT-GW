@@ -2,9 +2,9 @@ import { AuthBtn } from "./auth";
 import { Brand } from "./brand";
 import { Links } from "./links";
 
-type Props = { admin: boolean; onLogin: () => void };
+type Props = { admin: boolean; authed: boolean };
 
-export function Sider({ admin, onLogin }: Props) {
+export function Sider({ admin, authed }: Props) {
   return (
     <nav
       className="flex h-full flex-col bg-rail text-rail-fg shadow-xl"
@@ -12,11 +12,9 @@ export function Sider({ admin, onLogin }: Props) {
     >
       <Brand wide />
       <div className="flex-1">
-        <Links admin={admin} mode="text" />
+        {authed ? <Links admin={admin} mode="text" /> : null}
       </div>
-      <div className="p-2">
-        <AuthBtn admin={admin} mode="text" onLogin={onLogin} />
-      </div>
+      <div className="p-2">{authed ? <AuthBtn mode="text" /> : null}</div>
     </nav>
   );
 }

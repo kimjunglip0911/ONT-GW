@@ -1,5 +1,3 @@
-"use client";
-
 import { X } from "lucide-react";
 import { AuthBtn } from "./auth";
 import { Brand } from "./brand";
@@ -7,12 +5,12 @@ import { Links } from "./links";
 
 type Props = {
   admin: boolean;
+  authed: boolean;
   show: boolean;
   onClose: () => void;
-  onLogin: () => void;
 };
 
-export function Draw({ admin, show, onClose, onLogin }: Props) {
+export function Draw({ admin, authed, show, onClose }: Props) {
   if (!show) return null;
   return (
     <div className="fixed inset-0 z-40 md:hidden">
@@ -30,11 +28,9 @@ export function Draw({ admin, show, onClose, onLogin }: Props) {
           </button>
         </div>
         <div className="flex-1">
-          <Links admin={admin} mode="text" onPick={onClose} />
+          {authed ? <Links admin={admin} mode="text" onPick={onClose} /> : null}
         </div>
-        <div className="p-2">
-          <AuthBtn admin={admin} mode="text" onLogin={onLogin} />
-        </div>
+        <div className="p-2">{authed ? <AuthBtn mode="text" /> : null}</div>
       </nav>
     </div>
   );
