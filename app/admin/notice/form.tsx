@@ -33,10 +33,10 @@ export function Form() {
       onSubmit={(e) => void onSend(e)}
     >
       <Meta />
-      <label className="mt-3 block text-sm">
+      <div className="mt-3 text-sm">
         본문
         <Edit key={n} onHtml={setHtml} />
-      </label>
+      </div>
       <button
         className="mt-4 rounded-md bg-ink px-3 py-2 text-sm text-card"
         type="submit"
