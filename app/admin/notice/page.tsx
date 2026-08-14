@@ -1,10 +1,12 @@
 import { Form } from "./form";
 
+export const dynamic = "force-dynamic";
+
 export default function Page() {
   return (
     <section>
       <p className="mb-6 text-sm text-muted">
-        공지 작성은 목업입니다. 직원 공지 목록은 바뀌지 않습니다.
+        등록한 공지는 직원 공지 페이지에 바로 보입니다.
       </p>
       <Form />
     </section>

@@ -24,11 +24,18 @@ ONT-GW/
 │   │   └── role.test.ts             # 역할 매핑 테스트
 │   ├── _db/                         # Supabase 서버 접근
 │   │   ├── add.ts                   # public.users insert
+│   │   ├── asnote.ts                # DB 행 → Notice
 │   │   ├── cast.ts                  # DB 행 → 목록 User
 │   │   ├── cols.ts                  # 목록 select 컬럼
 │   │   ├── del.ts                   # public.users 삭제
 │   │   ├── find.ts                  # uid로 로그인 행 조회
+│   │   ├── html.ts                  # 공지 본문 태그 정제
+│   │   ├── html.test.ts             # 본문 정제 테스트
 │   │   ├── list.ts                  # public.users 조회
+│   │   ├── note.ts                  # public.notices insert
+│   │   ├── notes.ts                 # public.notices 조회
+│   │   ├── rank.ts                  # 고정·최신순 정렬
+│   │   ├── rank.test.ts             # 고정 정렬 테스트
 │   │   ├── sb.ts                    # secret 키 클라이언트
 │   │   └── upd.ts                   # public.users 수정
 │   ├── _shell/                      # 레이아웃 셸
@@ -53,9 +60,13 @@ ONT-GW/
 │   │   │   ├── data.ts              # 직원 근태 목업 행
 │   │   │   ├── page.tsx             # 근태 관리 페이지
 │   │   │   └── table.tsx            # 근태 목록 테이블
-│   │   ├── notice/                  # 공지 등록 목업
+│   │   ├── notice/                  # 공지사항 등록 (DB)
+│   │   │   ├── edit.tsx             # 본문 Tiptap 편집기
 │   │   │   ├── form.tsx             # 공지 작성 폼
-│   │   │   └── page.tsx             # 공지사항 등록 페이지
+│   │   │   ├── meta.tsx             # 제목·구분·고정 일수
+│   │   │   ├── page.tsx             # 공지사항 등록 페이지
+│   │   │   ├── save.ts              # 공지 등록 액션
+│   │   │   └── tools.tsx            # 본문 서식 도구
 │   │   ├── pay/                     # 급여 세팅 목업
 │   │   │   ├── form.tsx             # 시급·수당 비율 폼
 │   │   │   └── page.tsx             # 급여 세팅 페이지
@@ -104,7 +115,8 @@ ONT-GW/
 │   │   ├── data.ts                  # 내 근태 목업 데이터
 │   │   └── page.tsx                 # 근태 확인 페이지
 │   ├── notice/                      # 직원 공지
-│   │   ├── data.ts                  # 공지 타입·목업 목록
+│   │   ├── data.ts                  # 공지 타입
+│   │   ├── item.tsx                 # 목록 행·본문 펼침
 │   │   ├── list.tsx                 # 공지 목록 UI
 │   │   └── page.tsx                 # 공지 페이지
 │   ├── globals.css                  # Tailwind·테마 토큰
