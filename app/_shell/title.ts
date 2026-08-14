@@ -6,5 +6,6 @@ export function pageName(path: string) {
   if (path.startsWith("/admin/attend")) return "근태 관리";
   if (path.startsWith("/admin")) return "관리자";
   if (path.startsWith("/attend")) return "근태 확인";
+  if (path.startsWith("/login")) return "로그인";
   return "공지";
 }
