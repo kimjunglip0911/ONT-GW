@@ -20,4 +20,6 @@ test("bad pay is zero", () => {
   assert.equal(rateOf(-1, ROWS), 0);
   assert.equal(rateOf(Number.NaN, ROWS), 0);
   assert.equal(taxOf(0, ROWS), 0);
+  assert.equal(taxOf(-1, ROWS), 0);
+  assert.equal(taxOf(Number.NaN, ROWS), 0);
 });
